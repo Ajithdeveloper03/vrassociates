@@ -1,13 +1,13 @@
 'use client';
 
-import Hero from '../components/home/Hero';
-import TrustIndicators from '../components/home/TrustIndicators';
-import Industries from '../components/home/Industries';
-import AboutPreview from '../components/home/AboutPreview';
-import FounderPreview from '../components/home/FounderPreview';
-import ServicesGrid from '../components/home/ServicesGrid';
-import CoreValues from '../components/home/CoreValues';
-import CTABanner from '../components/home/CTABanner';
+import Hero from './Hero';
+import TrustIndicators from './TrustIndicators';
+import Industries from './Industries';
+import AboutPreview from './AboutPreview';
+import FounderPreview from './FounderPreview';
+import ServicesGrid from './ServicesGrid';
+import CoreValues from './CoreValues';
+import CTABanner from './CTABanner';
 
 const HomePage = () => {
   return (
