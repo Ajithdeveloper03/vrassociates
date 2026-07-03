@@ -21,8 +21,10 @@ export function Industries() {
 
   useEffect(() => {
     checkScroll();
-    window.addEventListener('resize', checkScroll);
-    return () => window.removeEventListener('resize', checkScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', checkScroll);
+      return () => window.removeEventListener('resize', checkScroll);
+    }
   }, []);
 
   const scroll = (direction: 'left' | 'right') => {
