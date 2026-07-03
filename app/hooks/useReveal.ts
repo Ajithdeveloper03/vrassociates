@@ -6,6 +6,8 @@ export function useReveal(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || !window.IntersectionObserver) return;
+
     const el = ref.current;
     if (!el) return;
 

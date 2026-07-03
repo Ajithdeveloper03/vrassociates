@@ -46,6 +46,8 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!heroRef.current) return;
       const rect = heroRef.current.getBoundingClientRect();
@@ -226,4 +228,5 @@ const Hero = () => {
   );
 };
 
+export { Hero };
 export default Hero;
