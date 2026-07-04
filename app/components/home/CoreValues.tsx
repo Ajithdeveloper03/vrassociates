@@ -32,12 +32,12 @@ export function CoreValues() {
   const col3 = [...coreValues.slice(5), ...coreValues.slice(0, 5)];
 
   return (
-    <section className="relative py-24 bg-secondary-50 overflow-hidden">
+    <section className="relative pt-[20px] pb-24 bg-secondary-50 overflow-hidden">
       {/* Background Glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary-200/40 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-4 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-secondary-900 mb-6">
             Our Principles
           </h2>

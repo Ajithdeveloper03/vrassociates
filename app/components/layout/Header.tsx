@@ -45,12 +45,12 @@ const Header = () => {
       }`}
     >
       {/* Diagonally split background for scrolled state */}
-      <div className={`absolute inset-0 z-0 overflow-hidden transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
-        {/* Right side (Gold/Accent) */}
+      <div className={`absolute inset-0 z-0 overflow-hidden transition-opacity duration-300 ${isScrolled ? 'opacity-100 shadow-sm' : 'opacity-0'}`}>
+        {/* Right side (Blue) */}
         <div className="absolute inset-0 bg-primary-500" />
-        {/* Left side (Dark Navy) with diagonal cut */}
+        {/* Left side (White) with diagonal cut */}
         <div 
-          className="absolute top-0 bottom-0 left-0 bg-primary-950"
+          className="absolute top-0 bottom-0 left-0 bg-white"
           style={{ width: '28%', clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0% 100%)' }}
         />
       </div>
@@ -67,10 +67,10 @@ const Header = () => {
               </span>
             </div>
             <div className="hidden sm:flex flex-col justify-center">
-              <p className={`text-lg font-bold leading-none text-white tracking-wide mb-1`}>
+              <p className={`text-lg font-bold leading-none tracking-wide mb-1 transition-colors duration-300 ${isScrolled ? 'text-secondary-900' : 'text-white'}`}>
                 Viswanathan R
               </p>
-              <p className={`text-lg font-bold leading-none text-white tracking-wide`}>
+              <p className={`text-lg font-bold leading-none tracking-wide transition-colors duration-300 ${isScrolled ? 'text-secondary-700' : 'text-white'}`}>
                 Associates
               </p>
             </div>
