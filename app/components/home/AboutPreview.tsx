@@ -1,116 +1,112 @@
 'use client';
 
+import { useRef, useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { companyInfo } from '@/app/lib/siteData';
-import { useReveal } from '@/app/hooks/useReveal';
-import { Target, Eye, Zap } from 'lucide-react';
-import Link from 'next/link';
 
 export function AboutPreview() {
-  const ref = useReveal();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach((el, i) => {
+              setTimeout(() => el.classList.add('visible'), i * 100);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div ref={ref} className="py-20 bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Dark Image Panel */}
-          <div className="relative reveal-left">
-            <div className="bg-gradient-to-br from-blue-900 to-indigo-900 rounded-lg p-8 min-h-96 flex flex-col justify-between">
-              <div>
-                <h3 className="text-4xl font-bold mb-6">Our Journey</h3>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  {companyInfo.story}
-                </p>
-              </div>
-              <div className="text-blue-400 font-semibold">Since 2000</div>
-            </div>
+    <section className="relative bg-white overflow-hidden">
+      <div ref={ref} className="grid lg:grid-cols-2 min-h-[90vh]">
+        <div className="relative flex flex-col justify-center px-10 lg:px-16 py-24 reveal-left">
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=100&w=1600"
+              alt="Corporate Professionals"
+              className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000 brightness-110 contrast-125 saturate-150"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary-950/95 via-primary-900/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary-950/60 via-transparent to-transparent" />
           </div>
 
-          {/* Right Side - Light Background with Cards */}
-          <div className="space-y-6 reveal">
-            <div className="bg-white text-gray-900 rounded-lg p-6">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Target className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold mb-2">Our Mission</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {companyInfo.mission}
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="absolute inset-0 opacity-[0.03] z-0"
+            style={{
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)`,
+              backgroundSize: '40px 40px',
+            }}
+          />
 
-            <div className="bg-white text-gray-900 rounded-lg p-6">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Eye className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold mb-2">Our Vision</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {companyInfo.vision}
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="relative z-10">
+            <div className="section-label-dark reveal">About Us</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.0] mt-4 mb-8 reveal">
+              Built on<br />
+              <span className="text-primary-300">Decades</span><br />
+              of Trust
+            </h2>
 
-            <div className="flex gap-4 pt-4">
-              <Link
-                href="/about"
-                className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-              >
-                Read Full Story
-              </Link>
-              <Link
-                href="#values"
-                className="inline-flex items-center justify-center px-6 py-3 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600 transition-colors"
-              >
-                Our Values
-              </Link>
+            <blockquote className="border-l-2 border-primary-500 pl-6 mb-10 reveal">
+              <p className="text-white/60 text-base leading-relaxed italic max-w-sm">
+                &ldquo;Every business deserves access to world-class financial advisory — that&apos;s the principle we were built on.&rdquo;
+              </p>
+            </blockquote>
+
+            <div className="flex gap-8 reveal">
+              <div>
+                <div className="text-4xl font-bold text-white">25+</div>
+                <div className="text-white/50 text-sm mt-1">Years Global Experience</div>
+              </div>
+              <div className="w-px bg-white/20" />
+              <div>
+                <div className="text-4xl font-bold text-white">970+</div>
+                <div className="text-white/50 text-sm mt-1">Successful Valuations</div>
+              </div>
             </div>
           </div>
         </div>
+
+        <div className="flex flex-col justify-center px-10 lg:px-16 py-24 bg-secondary-50">
+          <div className="max-w-lg">
+            <p className="text-sm font-semibold tracking-widest text-primary-600 uppercase mb-3 reveal">
+              Our Story
+            </p>
+            <p className="text-secondary-700 text-lg leading-relaxed mb-8 reveal">
+              {companyInfo.story}
+            </p>
+
+            <div className="space-y-4 mb-10">
+              <div className="p-5 rounded-xl border-l-4 border-primary-600 bg-white shadow-soft reveal">
+                <div className="text-xs font-bold tracking-widest text-primary-600 uppercase mb-2">Vision</div>
+                <p className="text-secondary-700 text-sm leading-relaxed">
+                  To be the most trusted partner for organizations seeking exceptional financial advisory and business transformation.
+                </p>
+              </div>
+              <div className="p-5 rounded-xl border-l-4 border-secondary-400 bg-white shadow-soft reveal">
+                <div className="text-xs font-bold tracking-widest text-secondary-500 uppercase mb-2">Mission</div>
+                <p className="text-secondary-700 text-sm leading-relaxed">
+                  We empower businesses with strategic financial insights that drive growth, optimize operations, and create lasting value.
+                </p>
+              </div>
+            </div>
+
+            <span className="btn-primary group cursor-pointer reveal">
+              Learn More About Us
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </div>
+        </div>
       </div>
-
-      <style jsx>{`
-        @keyframes revealIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes revealFromLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        :global(.reveal) {
-          opacity: 0;
-          animation: revealIn 0.6s ease-out forwards;
-        }
-
-        :global(.reveal-left) {
-          opacity: 0;
-          animation: revealFromLeft 0.6s ease-out forwards;
-        }
-
-        :global(.reveal.visible),
-        :global(.reveal-left.visible) {
-          opacity: 1;
-        }
-      `}</style>
-    </div>
+    </section>
   );
 }
+
+export default AboutPreview;
