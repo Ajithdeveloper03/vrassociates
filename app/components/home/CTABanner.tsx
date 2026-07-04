@@ -38,76 +38,114 @@ export function CTABanner() {
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-primary-500/10 rounded-full blur-[80px] animate-float pointer-events-none" style={{ animationDelay: '3s' }} />
 
         <div ref={ref} className="container-custom relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="section-label-dark reveal">Get Started</div>
-              <h2 className="section-title-white mt-4 mb-6 reveal">
-                Ready to Strengthen<br />
-                Your Business<br />
-                <span className="text-primary-300">Finances?</span>
-              </h2>
-              <p className="section-subtitle-white mb-10 reveal">
-                Let&apos;s discuss how our expertise can help you navigate complexity, optimize operations, and create lasting value.
-              </p>
-              <div className="flex flex-wrap gap-4 reveal">
-                <span className="btn-primary cursor-pointer group">
-                  Book a Consultation
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </span>
-                <a href={`tel:${companyInfo.contact.phone.replace(/\s/g, '')}`} className="btn-outline group flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  Call Us Now
-                </a>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Left Side: Text + Reach Us Directly Box */}
+            <div className="flex flex-col h-full justify-between lg:pr-8">
+              <div>
+                <div className="section-label-dark reveal">Get Started</div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mt-4 mb-4 reveal">
+                  Ready to Strengthen<br />
+                  Your Business<br />
+                  <span className="text-primary-300">Finances?</span>
+                </h2>
+                <p className="section-subtitle-white mb-6 reveal">
+                  Let&apos;s discuss how our expertise can help you navigate complexity, optimize operations, and create lasting value.
+                </p>
               </div>
-              <p className="text-white/30 text-xs mt-5 reveal">No commitment required. We&apos;ll understand your needs first.</p>
-            </div>
 
-            <div className="reveal-scale">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 space-y-6">
-                <h3 className="text-lg font-semibold text-white mb-6">Reach Us Directly</h3>
-
+              {/* Info Box (Moved from right, removed box styling) */}
+              <div className="reveal-scale mt-4">
                 <div className="space-y-5">
-                  <a href={`mailto:${companyInfo.contact.email}`}
-                    className="flex items-center gap-4 group hover:text-primary-300 transition-colors">
-                    <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-600 transition-colors duration-300">
-                      <Mail className="w-5 h-5 text-white/60 group-hover:text-white transition-colors" />
-                    </div>
-                    <div>
-                      <div className="text-white/40 text-xs mb-0.5">Email</div>
-                      <div className="text-white text-sm">{companyInfo.contact.email}</div>
-                    </div>
-                  </a>
+                  <h3 className="text-lg font-semibold text-white mb-3">Reach Us Directly</h3>
 
-                  <a href={`tel:${companyInfo.contact.phone.replace(/\s/g, '')}`}
-                    className="flex items-center gap-4 group hover:text-primary-300 transition-colors">
-                    <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-600 transition-colors duration-300">
-                      <Phone className="w-5 h-5 text-white/60 group-hover:text-white transition-colors" />
-                    </div>
-                    <div>
-                      <div className="text-white/40 text-xs mb-0.5">Phone</div>
-                      <div className="text-white text-sm">{companyInfo.contact.phone}</div>
-                    </div>
-                  </a>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="space-y-4">
+                      <a href={`mailto:${companyInfo.contact.email}`}
+                        className="flex items-start gap-3 group hover:text-primary-300 transition-colors">
+                        <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-600 transition-colors duration-300">
+                          <Mail className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" />
+                        </div>
+                        <div>
+                          <div className="text-white/40 text-xs mb-0.5">Email</div>
+                          <div className="text-white/90 text-[13px]">{companyInfo.contact.email}</div>
+                        </div>
+                      </a>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                      <MapPin className="w-5 h-5 text-white/60" />
+                      <a href={`tel:${companyInfo.contact.phone.replace(/\s/g, '')}`}
+                        className="flex items-start gap-3 group hover:text-primary-300 transition-colors">
+                        <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-600 transition-colors duration-300">
+                          <Phone className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" />
+                        </div>
+                        <div>
+                          <div className="text-white/40 text-xs mb-0.5">Phone</div>
+                          <div className="text-white/90 text-[13px]">{companyInfo.contact.phone}</div>
+                        </div>
+                      </a>
                     </div>
-                    <div>
-                      <div className="text-white/40 text-xs mb-0.5">Office</div>
-                      <address className="text-white text-sm not-italic leading-relaxed">
-                        {companyInfo.address.line1},<br />
-                        {companyInfo.address.line2},<br />
-                        {companyInfo.address.city} — {companyInfo.address.pincode}
-                      </address>
+
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                          <MapPin className="w-4 h-4 text-white/70" />
+                        </div>
+                        <div>
+                          <div className="text-white/40 text-xs mb-0.5">Office</div>
+                          <address className="text-white/90 text-[13px] not-italic leading-relaxed">
+                            {companyInfo.address.line1},<br />
+                            {companyInfo.address.line2},<br />
+                            {companyInfo.address.city} — {companyInfo.address.pincode}
+                          </address>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="pt-5 border-t border-white/10">
-                  <div className="text-white/40 text-xs mb-2">Business Hours</div>
-                  <div className="text-white/70 text-sm">Mon–Fri: 9:00 AM – 6:00 PM &nbsp;|&nbsp; Sat: 9:00 AM – 1:00 PM</div>
+                  <div className="pt-4 mt-4 border-t border-white/10 flex flex-col sm:flex-row gap-2 sm:gap-6">
+                    <div className="text-white/40 text-xs">Business Hours:</div>
+                    <div className="text-white/70 text-sm">Mon–Fri: 9:00 AM – 6:00 PM &nbsp;|&nbsp; Sat: 9:00 AM – 1:00 PM</div>
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Right Side: Contact Form */}
+            <div className="reveal-scale lg:pl-6">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 shadow-2xl">
+                <h3 className="text-xl font-bold text-white mb-1.5">Send us a Message</h3>
+                <p className="text-white/60 text-xs mb-5">Fill out the form below and we'll get back to you shortly.</p>
+                
+                <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-medium text-white/70">First Name</label>
+                      <input type="text" className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-white placeholder-white/30 transition-all text-sm" placeholder="John" />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-medium text-white/70">Last Name</label>
+                      <input type="text" className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-white placeholder-white/30 transition-all text-sm" placeholder="Doe" />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-medium text-white/70">Email Address</label>
+                    <input type="email" className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-white placeholder-white/30 transition-all text-sm" placeholder="john@example.com" />
+                  </div>
+                  
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-medium text-white/70">Phone Number</label>
+                    <input type="tel" className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-white placeholder-white/30 transition-all text-sm" placeholder="+91 98765 43210" />
+                  </div>
+                  
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-medium text-white/70">Message</label>
+                    <textarea rows={3} className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-white placeholder-white/30 transition-all resize-none text-sm" placeholder="How can we help you?"></textarea>
+                  </div>
+                  
+                  <button type="submit" className="w-full btn-primary py-2.5 text-sm mt-1 group">
+                    Submit Inquiry
+                    <ArrowRight className="w-3.5 h-3.5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </form>
               </div>
             </div>
           </div>

@@ -67,8 +67,8 @@ const Header = () => {
               </span>
             </div>
             <div className="hidden sm:block">
-              <p className={`text-lg font-semibold leading-tight text-white`}>
-                Viswanathan R Associates
+              <p className={`text-lg font-semibold leading-tight text-white tracking-wide`}>
+                Associates
               </p>
               <p className={`text-xs text-white/70`}>
                 

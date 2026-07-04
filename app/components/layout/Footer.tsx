@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-secondary-900 text-white">
       {/* Main Footer Content */}
-      <div className="container-custom section-padding">
+      <div className="container-custom py-20 lg:py-28">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           {/* Company Info */}
           <div className="lg:col-span-1">
@@ -16,8 +16,8 @@ const Footer = () => {
                 <span className="text-2xl font-serif font-bold text-white">VR</span>
               </div>
               <div>
-                <p className="text-lg font-semibold leading-tight">Viswanathan R</p>
-                <p className="text-sm text-secondary-400">Associates</p>
+                <p className="text-lg font-semibold leading-tight">Associates</p>
+                <p className="text-sm text-secondary-400"></p>
               </div>
             </a>
             <p className="text-secondary-400 text-sm leading-relaxed mb-6">
@@ -134,24 +134,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-secondary-800">
-        <div className="container-custom py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-secondary-500 text-sm text-center md:text-left">
-              © {currentYear} {companyInfo.name}. All rights reserved.
-            </p>
-            <div className="flex gap-6 text-sm">
-              <span className="text-secondary-500 hover:text-white transition-colors duration-200 cursor-pointer">
-                Privacy Policy
-              </span>
-              <span className="text-secondary-500 hover:text-white transition-colors duration-200 cursor-pointer">
-                Terms of Service
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
     </footer>
   );
 };
