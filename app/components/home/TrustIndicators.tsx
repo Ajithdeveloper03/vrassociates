@@ -1,111 +1,126 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { trustIndicators } from '@/app/lib/siteData';
-import { useReveal } from '@/app/hooks/useReveal';
+import { useEffect, useRef, useState } from 'react';
 
-function Counter({ value, label }: { value: string; label: string }) {
+const stats = [
+  { value: 25, suffix: '+', label: 'Years of Experience', isNumeric: true },
+  { value: 970, suffix: '+', label: 'Valuations Completed', isNumeric: true },
+  { value: 12, suffix: '+', label: 'Industries Served', isNumeric: true },
+  { value: 100, suffix: '%', label: 'Client Commitment', isNumeric: true },
+];
+
+const badges = [
+  { short: 'IBBI', label: 'Registered Valuer' },
+  { short: 'IP', label: 'Insolvency Professional' },
+  { short: 'CMA', label: 'Cost & Mgmt Accountant' },
+  { short: 'ID', label: 'Independent Director' },
+];
+
+function CountUp({ target, suffix, isVisible }: { target: number; suffix: string; isVisible: boolean }) {
   const [count, setCount] = useState(0);
-  const numValue = parseInt(value.replace(/[^0-9]/g, ''));
-  const isNumber = !isNaN(numValue);
-  const suffix = value.replace(/[0-9]/g, '');
 
   useEffect(() => {
-    if (!isNumber) return;
-
+    if (!isVisible) return;
+    const duration = 1800;
+    const steps = 60;
+    const increment = target / steps;
     let current = 0;
-    const increment = Math.ceil(numValue / 30);
-    const interval = setInterval(() => {
-      current += increment;
-      if (current >= numValue) {
-        setCount(numValue);
-        clearInterval(interval);
-      } else {
-        setCount(current);
-      }
-    }, 30);
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      current = Math.min(Math.round(increment * step), target);
+      setCount(current);
+      if (step >= steps) clearInterval(timer);
+    }, duration / steps);
+    return () => clearInterval(timer);
+  }, [isVisible, target]);
 
-    return () => clearInterval(interval);
-  }, [numValue, isNumber]);
-
-  return (
-    <div className="text-center reveal">
-      <div className="text-4xl font-bold text-blue-600 mb-2">
-        {isNumber ? count : value}
-        {isNumber && suffix}
-      </div>
-      <p className="text-gray-600 text-sm">{label}</p>
-    </div>
-  );
+  return <>{count}{suffix}</>;
 }
 
 export function TrustIndicators() {
-  const ref = useReveal();
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            entry.target.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach((el, i) => {
+              setTimeout(() => el.classList.add('visible'), i * 100);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div ref={ref} className="py-16 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {trustIndicators.map((indicator, index) => (
-            <Counter
-              key={index}
-              value={indicator.value}
-              label={indicator.label}
-            />
+    <section className="relative bg-white py-16 overflow-hidden border-y border-secondary-100">
+      <div className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #0f172a 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+
+      <div ref={ref} className="container-custom relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-0 mb-12">
+          {stats.map((stat, i) => (
+            <div
+              key={i}
+              className={`text-center py-8 px-4 relative group reveal-scale ${
+                i !== stats.length - 1 ? 'border-r border-secondary-100' : ''
+              }`}
+            >
+              <div className="absolute inset-0 bg-primary-50/0 group-hover:bg-primary-50/50 transition-colors duration-300 rounded-xl" />
+              <div className="text-5xl md:text-6xl font-bold text-secondary-900 mb-2 relative">
+                <span className="bg-gradient-to-br from-secondary-900 to-primary-700 bg-clip-text text-transparent">
+                  <CountUp target={stat.value} suffix={stat.suffix} isVisible={isVisible} />
+                </span>
+              </div>
+              <div className="text-secondary-500 text-sm font-medium tracking-wide">{stat.label}</div>
+              <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary-500 transition-all duration-500 ${isVisible ? 'w-12' : 'w-0'}`} style={{ transitionDelay: `${i * 150}ms` }} />
+            </div>
           ))}
         </div>
 
-        <div className="mt-12 pt-12 border-t border-gray-200">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="reveal">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
-                <span className="text-blue-600 font-bold">✓</span>
+        <div className="border-t border-secondary-100 pt-10 reveal">
+          <p className="text-center text-secondary-500 text-xs tracking-widest uppercase mb-6">
+            Professional Credentials
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {badges.map((badge, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 px-5 py-3 rounded-full bg-white border border-secondary-200 hover:border-primary-300 hover:bg-primary-50 transition-all duration-300 shadow-sm group reveal-scale"
+              >
+                <span className="text-primary-700 font-bold text-sm group-hover:text-primary-600 transition-colors">{badge.short}</span>
+                <span className="text-secondary-600 text-sm">{badge.label}</span>
               </div>
-              <p className="text-sm font-medium text-gray-700">IBBI Registered Valuer</p>
-            </div>
-            <div className="reveal">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-3">
-                <span className="text-green-600 font-bold">✓</span>
+            ))}
+
+            <div className="hidden md:flex items-center gap-4 ml-4 pl-4 border-l border-secondary-200 reveal-left">
+              <span className="text-secondary-500 text-xs tracking-widest uppercase">Global Experience</span>
+              <div className="flex gap-1">
+                {['IN', 'ME', 'SEA'].map((region) => (
+                  <span key={region} className="text-xs px-2 py-1 rounded bg-secondary-100 text-secondary-600 font-mono">
+                    {region}
+                  </span>
+                ))}
               </div>
-              <p className="text-sm font-medium text-gray-700">IBBI Registered IP</p>
-            </div>
-            <div className="reveal">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-full mb-3">
-                <span className="text-purple-600 font-bold">✓</span>
-              </div>
-              <p className="text-sm font-medium text-gray-700">Independent Director</p>
-            </div>
-            <div className="reveal">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-orange-100 rounded-full mb-3">
-                <span className="text-orange-600 font-bold">✓</span>
-              </div>
-              <p className="text-sm font-medium text-gray-700">Global Expertise</p>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes revealIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        :global(.reveal) {
-          opacity: 0;
-          animation: revealIn 0.6s ease-out forwards;
-        }
-
-        :global(.reveal.visible) {
-          opacity: 1;
-        }
-      `}</style>
-    </div>
+    </section>
   );
 }
+
+export default TrustIndicators;
