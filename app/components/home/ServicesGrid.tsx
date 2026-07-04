@@ -14,24 +14,30 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({ title, shortDescription, icon: Icon, index }: ServiceCardProps) => (
-  <div className={`group flex flex-col items-start p-2 reveal`} style={{ animationDelay: `${index * 100}ms` }}>
-    <div className="relative mb-3">
-      <div className="absolute inset-0 bg-primary-100 rounded-full scale-110 -translate-x-1 translate-y-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      <div className="relative w-10 h-10 rounded-lg bg-white border border-secondary-100 flex items-center justify-center group-hover:border-primary-500 transition-colors duration-300 shadow-sm">
-        <Icon className="w-5 h-5 text-primary-950 group-hover:text-primary-600 transition-colors duration-300" />
-      </div>
-      <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-accent-500 rounded-full border-2 border-white" />
+  <div className="group flex flex-col items-start cursor-pointer reveal" style={{ animationDelay: `${index * 100}ms` }}>
+    {/* Icon with dual-tone accent effect */}
+    <div className="relative mb-6">
+      <div className="absolute top-1 -left-2 w-8 h-8 rounded-full bg-amber-500/20 z-0 transition-transform group-hover:scale-125 duration-300" />
+      <Icon strokeWidth={1.5} className="w-10 h-10 text-secondary-900 relative z-10" />
+      {/* Small orange accent dot commonly seen in these designs */}
+      <div className="absolute bottom-1 right-0 w-2 h-2 rounded-full bg-amber-500 z-10" />
     </div>
 
-    <h3 className="text-base font-bold text-secondary-900 mb-1 group-hover:text-primary-700 transition-colors">{title}</h3>
-    <p className="text-sm text-secondary-500 leading-snug mb-3 line-clamp-3">{shortDescription}</p>
+    <h3 className="text-[17px] font-bold text-secondary-900 mb-3 group-hover:text-primary-600 transition-colors">
+      {title}
+    </h3>
+    
+    <p className="text-[13px] text-secondary-500 leading-relaxed mb-5 line-clamp-3">
+      {shortDescription}
+    </p>
 
-    <span className="mt-auto inline-flex items-center text-xs font-bold text-secondary-900 group-hover:text-primary-600 transition-colors cursor-pointer">
-      Read More
-      <div className="ml-2 w-6 h-6 rounded-full bg-white border border-secondary-200 flex items-center justify-center group-hover:border-primary-600 transition-colors">
-        <ArrowRight className="w-3 h-3" />
+    {/* Read More Link - visible on hover or always visible for the first item */}
+    <div className={`flex items-center gap-2 mt-auto transition-all duration-300 ${index === 0 ? 'opacity-100' : 'opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0'}`}>
+      <span className="text-xs font-bold text-secondary-900">Read More</span>
+      <div className="w-6 h-6 rounded-full bg-white shadow-sm border border-secondary-100 flex items-center justify-center group-hover:border-primary-200 transition-colors">
+        <ArrowRight className="w-3 h-3 text-secondary-900" />
       </div>
-    </span>
+    </div>
   </div>
 );
 
@@ -57,70 +63,74 @@ export function ServicesGrid() {
   }, []);
 
   return (
-    <section className="relative section-padding bg-secondary-50 overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.02] pointer-events-none"
+    <section className="relative pt-20 pb-24 bg-[#f8f9fb] overflow-hidden">
+      {/* Background visual elements to match reference */}
+      <div className="absolute top-0 right-0 w-[40%] h-full opacity-30 pointer-events-none z-0 mix-blend-multiply"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000000' d='M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.3,-46.3C90.8,-33.5,96.9,-17.9,96.1,-2.5C95.3,13,87.6,28.2,77.5,41.2C67.4,54.2,54.9,65,40.9,72.7C26.9,80.4,11.4,85,-4.4,86.8C-20.2,88.6,-36.3,87.6,-50,80.1C-63.7,72.6,-75,58.6,-82.7,43.2C-90.4,27.8,-94.5,11,-93,-5.1C-91.5,-21.2,-84.4,-36.6,-74.2,-48.8C-64,-61,-50.7,-70.1,-36.5,-77.1C-22.3,-84.1,-7.2,-89,7.6,-88.3C22.4,-87.6,44.7,-81.4,44.7,-76.4Z' transform='translate(100 100)' /%3E%3C/svg%3E")`,
-          backgroundSize: '100% 100%',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l100 100M100 0L0 100' stroke='%23e2e8f0' stroke-width='1' fill='none'/%3E%3C/svg%3E")`,
+          backgroundSize: '120px 120px'
         }}
       />
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-white rounded-full blur-3xl opacity-50 z-0 pointer-events-none" />
 
-      <div ref={ref} className="container-custom relative z-10">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-6 items-start">
-          <div className="w-full lg:w-[35%] relative reveal-left">
-            <div className="relative rounded-2xl overflow-hidden aspect-[3/4] lg:aspect-[4/5] bg-gradient-to-b from-primary-50 to-secondary-200/50 shadow-soft-xl flex items-end justify-center">
-              <img
-                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=800"
-                alt="Financial Consultant"
-                className="w-full h-full object-cover object-top mix-blend-multiply transform hover:scale-105 transition-transform duration-1000"
-              />
-              <div className="absolute inset-0 bg-white/5 pointer-events-none" />
+      <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-8 items-start">
+        
+        {/* Left Image Section */}
+        <div className="w-full lg:w-[32%] relative reveal-left order-2 lg:order-1 pt-10 lg:pt-0">
+          <div className="relative w-full h-[500px] lg:h-[700px] rounded-tr-[50%] rounded-br-[50%] overflow-hidden shadow-xl">
+            <img
+              src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=1000"
+              alt="Accountant Consultant"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Right Content Section */}
+        <div className="w-full lg:w-[68%] flex flex-col order-1 lg:order-2 pt-4 lg:pt-0">
+          
+          <div className="mb-14">
+            <div className="inline-block px-3 py-1 bg-white shadow-sm rounded mb-5 reveal">
+              <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-secondary-500">Our Services</span>
             </div>
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-accent-500/10 rounded-full blur-xl pointer-events-none" />
+            <h2 className="text-4xl md:text-5xl font-bold text-secondary-900 leading-[1.15] tracking-tight max-w-2xl reveal">
+              Why choose us consultant?
+            </h2>
           </div>
 
-          <div className="w-full lg:w-[65%] flex flex-col">
-            <div className="mb-8 max-w-2xl px-2">
-              <div className="inline-flex items-center px-3 py-1 bg-white shadow-sm border border-secondary-100 rounded-full mb-4 reveal">
-                <span className="text-[10px] font-bold tracking-widest uppercase text-secondary-500">Our Expertise</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-secondary-900 leading-[1.2] reveal">
-                Why Choose Our Consulting?
-              </h2>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            {displayedServices.map((service, index) => (
+              <ServiceCard
+                key={service.id}
+                title={service.title}
+                shortDescription={service.shortDescription}
+                icon={service.icon}
+                index={index}
+              />
+            ))}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
-              {displayedServices.map((service, index) => (
-                <ServiceCard
-                  key={service.id}
-                  title={service.title}
-                  shortDescription={service.shortDescription}
-                  icon={service.icon}
-                  index={index}
-                />
-              ))}
-
-              <div className="bg-primary-950 rounded-xl p-6 flex flex-col justify-center items-start shadow-xl reveal relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary-800 rounded-bl-full opacity-50 translate-x-8 -translate-y-8 group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute inset-0 opacity-[0.05]"
-                  style={{
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
-                    backgroundSize: '24px 24px',
-                  }}
-                />
-                <h3 className="relative z-10 text-xl font-bold text-white mb-6 leading-snug">
-                  Explore our all<br />expertises we offers
-                </h3>
-                <span className="relative z-10 inline-flex items-center gap-3 px-6 py-3 bg-white text-primary-950 text-sm font-bold rounded-lg hover:bg-secondary-50 transition-colors cursor-pointer group/btn">
-                  View All Services
-                  <div className="w-6 h-6 rounded-full bg-accent-500 flex items-center justify-center group-hover/btn:scale-110 transition-transform">
-                    <ArrowRight className="w-3 h-3 text-white" />
-                  </div>
-                </span>
-              </div>
+            {/* Dark CTA Card matching reference */}
+            <div className="bg-[#151c2c] rounded p-8 flex flex-col justify-center items-start shadow-xl reveal relative overflow-hidden group min-h-[220px]">
+              {/* Subtle background grid pattern */}
+              <div className="absolute top-0 right-0 w-32 h-32 opacity-10"
+                style={{
+                  backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+                  backgroundSize: '24px 24px',
+                }}
+              />
+              
+              <h3 className="relative z-10 text-[22px] font-bold text-white mb-8 leading-snug tracking-tight">
+                Explore our all<br />expertises we offers
+              </h3>
+              
+              <button className="relative z-10 inline-flex items-center gap-3 px-4 py-2 bg-white rounded shadow hover:bg-gray-50 transition-colors group/btn">
+                <span className="text-[11px] font-bold text-secondary-900">View All Services</span>
+                <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center group-hover/btn:scale-110 transition-transform">
+                  <ArrowRight className="w-3 h-3 text-white" />
+                </div>
+              </button>
             </div>
+            
           </div>
         </div>
       </div>

@@ -1,96 +1,88 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
 import { coreValues } from '@/app/lib/siteData';
+import { Quote } from 'lucide-react';
 
-const valueImages = [
-  'https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=800',
-];
-
-interface ValueCardProps {
-  name: string;
-  image: string;
-  index: number;
-}
-
-const ValueCard = ({ name, image, index }: ValueCardProps) => {
-  const revealClass = index % 2 === 0 ? 'reveal-left' : 'reveal-scale';
-
-  const firstWord = name.split(' ')[0];
-  const restWords = name.split(' ').slice(1).join(' ');
-
+const ValueCard = ({ value }: { value: any }) => {
+  const Icon = value.icon;
   return (
-    <div className={`relative group ${revealClass} flex flex-col h-full bg-white rounded-2xl shadow-soft hover:shadow-soft-lg transition-shadow duration-500 border border-secondary-100 overflow-hidden`}>
-      <div className="relative w-full h-[160px] shrink-0 overflow-hidden">
-        <img src={image} alt={name} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <div className="bg-white border border-secondary-200 rounded-xl p-6 mb-4 sm:mb-6 hover:border-primary-400 hover:shadow-soft-lg transition-all duration-300 shadow-sm relative group">
+      <Quote className="absolute top-6 right-6 w-8 h-8 text-primary-500/10 group-hover:text-primary-500/20 transition-colors" />
+      
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center shrink-0 border border-primary-200 group-hover:bg-primary-100 group-hover:border-primary-300 transition-colors">
+          <Icon className="w-5 h-5 text-primary-600" />
+        </div>
+        <div className="pr-8">
+          <h3 className="text-base sm:text-lg font-bold text-secondary-900 leading-tight">{value.name}</h3>
+          <p className="text-[10px] sm:text-xs font-semibold text-primary-600 uppercase tracking-wider mt-0.5">Core Principle</p>
+        </div>
       </div>
-
-      <div className="p-6 w-full flex flex-col flex-1 bg-white z-10 relative">
-        <h3 className="text-xl font-bold mb-4 text-secondary-900 transition-colors duration-500">
-          <span className="text-primary-600 transition-colors duration-500">{firstWord}</span>{' '}
-          {restWords}
-        </h3>
-
-        <span className="inline-flex items-center text-xs font-bold tracking-widest text-secondary-500 group-hover:text-primary-600 uppercase cursor-pointer transition-colors duration-500 mt-auto">
-          <span className="w-8 h-8 rounded-full bg-primary-50 group-hover:bg-primary-600 text-primary-600 group-hover:text-white flex items-center justify-center mr-3 transition-colors duration-500">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-          </span>
-          Learn more
-        </span>
-      </div>
+      
+      <p className="text-secondary-600 text-sm leading-relaxed">
+        {value.description}
+      </p>
     </div>
   );
 };
 
 export function CoreValues() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 150);
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const col1 = [...coreValues];
+  const col2 = [...coreValues.slice(3), ...coreValues.slice(0, 3)];
+  const col3 = [...coreValues.slice(5), ...coreValues.slice(0, 5)];
 
   return (
-    <section className="relative section-padding !pt-16 bg-secondary-50 overflow-hidden">
-      <div ref={ref} className="container-custom relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-secondary-900 mb-4 reveal">
+    <section className="relative py-24 bg-secondary-50 overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary-200/40 rounded-full blur-[120px] pointer-events-none" />
+      
+      <div className="container-custom relative z-10">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-secondary-900 mb-6">
             Our Principles
           </h2>
-          <p className="text-secondary-600 text-sm tracking-wide reveal">
-            The values that define us and shape every client relationship.
+          <p className="text-secondary-600 text-lg">
+            The fundamental values that define our culture, shape our strategies, and guarantee excellence in every client relationship.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-start mt-12 pb-20">
-          {coreValues.map((value, index) => (
-            <ValueCard
-              key={value.name}
-              name={value.name}
-              image={valueImages[index]}
-              index={index}
-            />
-          ))}
+        {/* Marquee Container */}
+        <div className="relative h-[600px] lg:h-[700px] overflow-hidden">
+          
+          {/* Gradient Masks for smooth fading at top and bottom */}
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-secondary-50 to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-secondary-50 to-transparent z-10 pointer-events-none" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 h-full">
+            
+            {/* Column 1 */}
+            <div className="relative h-full overflow-hidden hidden sm:block">
+              <div className="animate-marquee-vertical hover:[animation-play-state:paused]">
+                {[...col1, ...col1].map((value, idx) => (
+                  <ValueCard key={`col1-${idx}`} value={value} />
+                ))}
+              </div>
+            </div>
+
+            {/* Column 2 (Reversed) */}
+            <div className="relative h-full overflow-hidden">
+              <div className="animate-marquee-vertical-reverse hover:[animation-play-state:paused]">
+                {[...col2, ...col2].map((value, idx) => (
+                  <ValueCard key={`col2-${idx}`} value={value} />
+                ))}
+              </div>
+            </div>
+
+            {/* Column 3 */}
+            <div className="relative h-full overflow-hidden hidden lg:block">
+              <div className="animate-marquee-vertical hover:[animation-play-state:paused]">
+                {[...col3, ...col3].map((value, idx) => (
+                  <ValueCard key={`col3-${idx}`} value={value} />
+                ))}
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>

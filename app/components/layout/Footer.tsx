@@ -15,9 +15,9 @@ const Footer = () => {
               <div className="w-12 h-12 rounded-lg bg-primary-600 flex items-center justify-center">
                 <span className="text-2xl font-serif font-bold text-white">VR</span>
               </div>
-              <div>
-                <p className="text-lg font-semibold leading-tight">Associates</p>
-                <p className="text-sm text-secondary-400"></p>
+              <div className="flex flex-col justify-center">
+                <p className="text-lg font-bold leading-none text-white tracking-wide mb-1">Viswanathan R</p>
+                <p className="text-lg font-bold leading-none text-white tracking-wide">Associates</p>
               </div>
             </a>
             <p className="text-secondary-400 text-sm leading-relaxed mb-6">

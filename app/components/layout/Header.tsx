@@ -66,12 +66,12 @@ const Header = () => {
                 VR
               </span>
             </div>
-            <div className="hidden sm:block">
-              <p className={`text-lg font-semibold leading-tight text-white tracking-wide`}>
-                Associates
+            <div className="hidden sm:flex flex-col justify-center">
+              <p className={`text-lg font-bold leading-none text-white tracking-wide mb-1`}>
+                Viswanathan R
               </p>
-              <p className={`text-xs text-white/70`}>
-                
+              <p className={`text-lg font-bold leading-none text-white tracking-wide`}>
+                Associates
               </p>
             </div>
           </a>
