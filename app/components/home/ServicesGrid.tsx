@@ -87,8 +87,7 @@ export function ServicesGrid() {
                 <span className="text-[10px] font-bold tracking-widest uppercase text-secondary-500">Our Expertise</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-secondary-900 leading-[1.2] reveal">
-                Why choose us as your<br />
-                accountant consultant?
+                Why Choose Our Consulting?
               </h2>
             </div>
 

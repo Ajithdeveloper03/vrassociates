@@ -65,8 +65,8 @@ const Hero = () => {
       />
 
       {/* Content */}
-      <div className="container-custom relative z-10 pb-20 pt-10">
-        <div className="max-w-4xl mx-auto lg:mx-0">
+      <div className="container-custom w-full relative z-10 pb-20 pt-10 flex flex-col items-start">
+        <div className="max-w-3xl w-full">
           
           {/* Pill badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8 animate-fade-in">
@@ -81,13 +81,13 @@ const Hero = () => {
 
           {/* Main headline */}
           <div className="mb-6">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white leading-[1.0] animate-fade-in-up drop-shadow-2xl">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] animate-fade-in-up drop-shadow-2xl">
               Corporate
             </h1>
             {/* Animated word cycle */}
             <div className="relative my-2">
               {/* Structural invisible element to maintain container size for longest text */}
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.1] opacity-0 pointer-events-none select-none" aria-hidden="true">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] opacity-0 pointer-events-none select-none" aria-hidden="true">
                 Value Creation.
               </h1>
 
@@ -96,7 +96,7 @@ const Hero = () => {
                 {words.map((word, i) => (
                   <h1
                     key={word}
-                    className={`absolute top-0 left-0 w-full text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.1] transition-all duration-700 ease-in-out drop-shadow-2xl ${wordColors[i]} ${
+                    className={`absolute top-0 left-0 w-full text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] transition-all duration-700 ease-in-out drop-shadow-2xl ${wordColors[i]} ${
                       i === currentWord
                         ? 'translate-y-0 opacity-100 z-10 scale-100'
                         : i < currentWord || (currentWord === 0 && i === words.length - 1)
@@ -139,18 +139,33 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 z-20">
-        <span className="text-white text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-white to-transparent" />
+      {/* Scroll indicator and Navigation Dots */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-8 z-20 w-full max-w-sm">
+        
+        {/* Slider Navigation Dots */}
+        <div className="flex items-center gap-3">
+          {bannerImages.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentBg(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+              className={`transition-all duration-300 rounded-full ${
+                currentBg === idx 
+                  ? 'w-8 h-2 bg-accent-400' 
+                  : 'w-2 h-2 bg-white/50 hover:bg-white/80'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Scroll down indicator */}
+        <div className="flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
+          <span className="text-white text-xs tracking-widest uppercase">Scroll</span>
+          <div className="w-px h-12 bg-gradient-to-b from-white to-transparent" />
+        </div>
       </div>
 
-      {/* Bottom diagonal clip */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 z-20">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-full">
-          <path d="M0,80 L1440,20 L1440,80 Z" fill="white" />
-        </svg>
-      </div>
+      {/* Bottom diagonal clip removed to straighten the section */}
     </section>
   );
 };

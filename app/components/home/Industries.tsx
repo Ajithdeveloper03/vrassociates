@@ -153,21 +153,15 @@ export function Industries() {
 
   return (
     <div ref={wrapperRef} style={{ height: wrapperHeight || '600vh' }} className="relative bg-secondary-950">
-      <div className="sticky top-0 overflow-hidden" style={{ height: '100vh' }}>
-        <div className="absolute top-0 left-0 right-0 z-30 pt-14 pb-6 px-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, rgba(2,6,23,0.9) 0%, transparent 100%)' }}>
-          <div className="flex items-end justify-between max-w-7xl mx-auto">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white/70 text-xs font-bold tracking-widest uppercase rounded-full border border-white/20 mb-3">
-                Cross-Industry Expertise
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-                Industries We Serve
-              </h2>
+      <div className="sticky top-0 overflow-hidden flex flex-col justify-center" style={{ height: '100vh' }}>
+        <div className="w-full z-30 pt-10 pb-4 px-10 shrink-0">
+          <div className="flex flex-col items-center text-center max-w-7xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white/70 text-xs font-bold tracking-widest uppercase rounded-full border border-white/20 mb-3">
+              Cross-Industry Expertise
             </div>
-            <p className="hidden md:block text-white/40 text-sm max-w-xs text-right leading-relaxed">
-              Deep expertise across 12+ industries. Scroll to explore.
-            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+              Industries We Serve
+            </h2>
           </div>
         </div>
 

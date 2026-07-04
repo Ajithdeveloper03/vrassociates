@@ -26,20 +26,21 @@ const ValueCard = ({ name, image, index }: ValueCardProps) => {
   const restWords = name.split(' ').slice(1).join(' ');
 
   return (
-    <div className={`relative group ${revealClass} flex flex-col items-center`}>
-      <div className="relative w-[95%] h-[140px] z-10 rounded-xl overflow-hidden shadow-2xl mb-[-30px]">
+    <div className={`relative group ${revealClass} flex flex-col h-full bg-white rounded-2xl shadow-soft hover:shadow-soft-lg transition-shadow duration-500 border border-secondary-100 overflow-hidden`}>
+      <div className="relative w-full h-[160px] shrink-0 overflow-hidden">
         <img src={image} alt={name} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
 
-      <div className="pt-12 pb-8 px-5 rounded-xl w-full transition-all duration-500 bg-transparent group-hover:bg-white group-hover:shadow-xl">
-        <h3 className="text-lg font-bold mb-3 text-secondary-900 transition-colors duration-500">
+      <div className="p-6 w-full flex flex-col flex-1 bg-white z-10 relative">
+        <h3 className="text-xl font-bold mb-4 text-secondary-900 transition-colors duration-500">
           <span className="text-primary-600 transition-colors duration-500">{firstWord}</span>{' '}
           {restWords}
         </h3>
 
-        <span className="inline-flex items-center text-xs font-bold tracking-widest text-secondary-500 group-hover:text-primary-600 uppercase cursor-pointer transition-colors duration-500">
-          <span className="w-6 h-6 rounded-full bg-secondary-100 group-hover:bg-primary-600 text-secondary-600 group-hover:text-white flex items-center justify-center mr-3 transition-colors duration-500">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        <span className="inline-flex items-center text-xs font-bold tracking-widest text-secondary-500 group-hover:text-primary-600 uppercase cursor-pointer transition-colors duration-500 mt-auto">
+          <span className="w-8 h-8 rounded-full bg-primary-50 group-hover:bg-primary-600 text-primary-600 group-hover:text-white flex items-center justify-center mr-3 transition-colors duration-500">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </span>
           Learn more
         </span>
@@ -70,7 +71,7 @@ export function CoreValues() {
   }, []);
 
   return (
-    <section className="relative section-padding bg-secondary-50 overflow-hidden">
+    <section className="relative section-padding !pt-16 bg-secondary-50 overflow-hidden">
       <div ref={ref} className="container-custom relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-secondary-900 mb-4 reveal">
