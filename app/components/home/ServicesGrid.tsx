@@ -72,7 +72,7 @@ export function ServicesGrid() {
           <div className="w-full lg:w-[35%] relative reveal-left">
             <div className="relative rounded-2xl overflow-hidden aspect-[3/4] lg:aspect-[4/5] bg-gradient-to-b from-primary-50 to-secondary-200/50 shadow-soft-xl flex items-end justify-center">
               <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=100&w=800"
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=800"
                 alt="Financial Consultant"
                 className="w-full h-full object-cover object-top mix-blend-multiply transform hover:scale-105 transition-transform duration-1000"
               />
@@ -82,7 +82,7 @@ export function ServicesGrid() {
           </div>
 
           <div className="w-full lg:w-[65%] flex flex-col">
-            <div className="mb-8 max-w-2xl">
+            <div className="mb-8 max-w-2xl px-2">
               <div className="inline-flex items-center px-3 py-1 bg-white shadow-sm border border-secondary-100 rounded-full mb-4 reveal">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-secondary-500">Our Expertise</span>
               </div>

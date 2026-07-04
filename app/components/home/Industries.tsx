@@ -5,18 +5,18 @@ import { LucideIcon } from 'lucide-react';
 import { industries } from '@/app/lib/siteData';
 
 const industryThemes = [
-  { from: '#0f172a', to: '#1e3a5f', accent: '#3b82f6', image: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#1a1a2e', to: '#16213e', accent: '#8b5cf6', image: 'https://images.pexels.com/photos/2101137/pexels-photo-2101137.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#0d2137', to: '#0a3d62', accent: '#06b6d4', image: 'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#1a1a1a', to: '#2d2d2d', accent: '#f59e0b', image: 'https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#0a192f', to: '#112240', accent: '#64ffda', image: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#1b1b2f', to: '#2e2e4e', accent: '#a78bfa', image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#0d1b2a', to: '#1b2838', accent: '#34d399', image: 'https://images.pexels.com/photos/3862379/pexels-photo-3862379.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#1a0a2e', to: '#2d1b4e', accent: '#f472b6', image: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#0f2027', to: '#203a43', accent: '#fb923c', image: 'https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#0a0a23', to: '#1a1a3e', accent: '#60a5fa', image: 'https://images.pexels.com/photos/7688460/pexels-photo-7688460.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#1c1c1c', to: '#2a2a2a', accent: '#fbbf24', image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800' },
-  { from: '#0d2137', to: '#0a3d62', accent: '#22d3ee', image: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  { from: '#0f172a', to: '#1e3a5f', accent: '#3b82f6', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800' },
+  { from: '#1a1a2e', to: '#16213e', accent: '#8b5cf6', image: 'https://images.unsplash.com/photo-1578507065211-1c4e99a5fd24?auto=format&fit=crop&q=80&w=800' },
+  { from: '#0d2137', to: '#0a3d62', accent: '#06b6d4', image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800' },
+  { from: '#1a1a1a', to: '#2d2d2d', accent: '#f59e0b', image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800' },
+  { from: '#0a192f', to: '#112240', accent: '#64ffda', image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800' },
+  { from: '#1b1b2f', to: '#2e2e4e', accent: '#a78bfa', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800' },
+  { from: '#0d1b2a', to: '#1b2838', accent: '#34d399', image: 'https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&q=80&w=800' },
+  { from: '#1a0a2e', to: '#2d1b4e', accent: '#f472b6', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800' },
+  { from: '#0f2027', to: '#203a43', accent: '#fb923c', image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800' },
+  { from: '#0a0a23', to: '#1a1a3e', accent: '#60a5fa', image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&q=80&w=800' },
+  { from: '#1c1c1c', to: '#2a2a2a', accent: '#fbbf24', image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&q=80&w=800' },
+  { from: '#0d2137', to: '#0a3d62', accent: '#22d3ee', image: 'https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=80&w=800' },
 ];
 
 const CARD_WIDTH = 400;
@@ -40,7 +40,6 @@ const IndustryCard = ({ name, icon: Icon, description, theme, index }: IndustryC
       src={theme.image}
       alt={name}
       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-110 contrast-[1.15] saturate-[1.2]"
-      loading="lazy"
     />
 
     <div

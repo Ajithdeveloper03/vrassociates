@@ -71,8 +71,8 @@ export function FounderPreview() {
                 
                 {/* Full Container Image */}
                 <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800" 
-                  alt="Founder" 
+                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800" 
+                  alt={founder.name} 
                   className="absolute inset-0 w-full h-full object-cover z-0"
                 />
 

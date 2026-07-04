@@ -32,8 +32,8 @@ export function AboutPreview() {
           <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-center px-10 lg:px-16 py-16 min-h-[500px]">
             <div className="absolute inset-0 z-0">
               <img
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=100&w=1600"
-                alt="Corporate Professionals"
+                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
+                alt="Our Story"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000 brightness-110 contrast-125 saturate-150"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-primary-950/95 via-primary-900/70 to-transparent" />

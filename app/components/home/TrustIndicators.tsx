@@ -66,7 +66,7 @@ export function TrustIndicators() {
       {/* Fixed Parallax Background Image */}
       <div 
         className="absolute inset-0 z-0 bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000")' }}
+        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&q=80&w=2000")' }}
       />
       
       {/* Light Overlay to ensure text readability */}
