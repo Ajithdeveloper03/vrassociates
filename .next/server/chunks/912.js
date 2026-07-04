@@ -1,1 +1,0 @@
-"use strict";exports.id=912,exports.ids=[912],exports.modules={912:(e,t,s)=>{s.r(t),s.d(t,{default:()=>r});let r=(0,s(8570).createProxy)(String.raw`C:\Users\inyma\OneDrive\Desktop\Ajith System Backup\inymart projects\viswanathan\app\components\home\HomePage.tsx#default`)}};
