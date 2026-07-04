@@ -71,7 +71,7 @@ const Header = () => {
                 Viswanathan R Associates
               </p>
               <p className={`text-xs text-white/70`}>
-                Corporate Finance Advisory
+                
               </p>
             </div>
           </a>
