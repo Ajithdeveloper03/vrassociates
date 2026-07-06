@@ -8,8 +8,8 @@ const words = ['Finance.', 'Transformation.', 'Value Creation.'];
 const wordColors = ['text-white', 'text-primary-300', 'text-accent-400'];
 
 const bannerImages = [
-  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=2000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2000&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2000&auto=format&fit=crop'
 ];
 
@@ -34,7 +34,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+    <section className="relative min-h-[100dvh] flex flex-col overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-6">
       
       {/* Background Images Slider */}
       {bannerImages.map((src, index) => (
@@ -65,16 +65,16 @@ const Hero = () => {
       />
 
       {/* Content */}
-      <div className="container-custom w-full relative z-10 pb-20 pt-10 flex flex-col items-start">
+      <div className="container-custom w-full relative z-10 flex-1 flex flex-col justify-center">
         <div className="max-w-3xl w-full">
           
           {/* Pill badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6 lg:mb-8 animate-fade-in">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-400" />
             </span>
-            <span className="text-xs font-semibold tracking-widest text-white/80 uppercase">
+            <span className="text-[10px] sm:text-xs font-semibold tracking-widest text-white/80 uppercase">
               Trusted by 970+ businesses worldwide
             </span>
           </div>
@@ -85,7 +85,7 @@ const Hero = () => {
               Corporate
             </h1>
             {/* Animated word cycle */}
-            <div className="relative my-2">
+            <div className="relative my-1 sm:my-2">
               {/* Structural invisible element to maintain container size for longest text */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] opacity-0 pointer-events-none select-none" aria-hidden="true">
                 Value Creation.
@@ -111,7 +111,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <p className="text-lg text-white/70 max-w-xl mb-10 leading-relaxed animate-fade-in-up animate-delay-200">
+          <p className="text-base sm:text-lg text-white/70 max-w-xl mb-8 lg:mb-10 leading-relaxed animate-fade-in-up animate-delay-200">
             {companyInfo.description} With 25+ years of global experience delivering measurable results for businesses, investors, and corporate leaders.
           </p>
 
@@ -127,7 +127,7 @@ const Hero = () => {
           </div>
 
           {/* Credentials */}
-          <div className="flex flex-wrap gap-x-6 gap-y-3 mt-12 animate-fade-in animate-delay-500">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-x-6 gap-y-3 mt-8 lg:mt-12 animate-fade-in animate-delay-500">
             {['IBBI Registered Valuer', 'IBBI Insolvency Professional', 'Independent Director'].map((cred) => (
               <div key={cred} className="flex items-center gap-2 text-white/70 text-sm font-medium">
                 <div className="w-1.5 h-1.5 rounded-full bg-accent-400 shadow-[0_0_10px_rgba(251,191,36,0.5)]" />
@@ -140,7 +140,7 @@ const Hero = () => {
       </div>
 
       {/* Scroll indicator and Navigation Dots */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-8 z-20 w-full max-w-sm">
+      <div className="relative z-20 flex flex-col items-center gap-6 mt-12">
         
         {/* Slider Navigation Dots */}
         <div className="flex items-center gap-3">
@@ -161,7 +161,7 @@ const Hero = () => {
         {/* Scroll down indicator */}
         <div className="flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
           <span className="text-white text-xs tracking-widest uppercase">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-white to-transparent" />
+          <div className="w-px h-8 sm:h-12 bg-gradient-to-b from-white to-transparent" />
         </div>
       </div>
 

@@ -31,8 +31,8 @@ const ServiceCard = ({ title, shortDescription, icon: Icon, index }: ServiceCard
       {shortDescription}
     </p>
 
-    {/* Read More Link - visible on hover or always visible for the first item */}
-    <div className={`flex items-center gap-2 mt-auto transition-all duration-300 ${index === 0 ? 'opacity-100' : 'opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0'}`}>
+    {/* Read More Link - visible on hover */}
+    <div className="flex items-center gap-2 mt-auto transition-all duration-300 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0">
       <span className="text-xs font-bold text-secondary-900">Read More</span>
       <div className="w-6 h-6 rounded-full bg-white shadow-sm border border-secondary-100 flex items-center justify-center group-hover:border-primary-200 transition-colors">
         <ArrowRight className="w-3 h-3 text-secondary-900" />
@@ -77,7 +77,7 @@ export function ServicesGrid() {
         
         {/* Left Image Section */}
         <div className="w-full lg:w-[32%] relative reveal-left order-2 lg:order-1 pt-10 lg:pt-0">
-          <div className="relative w-full h-[500px] lg:h-[700px] rounded-tr-[50%] rounded-br-[50%] overflow-hidden shadow-xl">
+          <div className="relative w-full h-[350px] md:h-[500px] lg:h-[700px] rounded-tr-[50%] rounded-br-[50%] overflow-hidden shadow-xl">
             <img
               src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=1000"
               alt="Accountant Consultant"

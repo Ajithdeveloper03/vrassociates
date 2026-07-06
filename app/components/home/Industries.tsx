@@ -19,7 +19,6 @@ const industryThemes = [
   { from: '#0d2137', to: '#0a3d62', accent: '#22d3ee', image: 'https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=80&w=800' },
 ];
 
-const CARD_WIDTH = 400;
 const CARD_GAP = 0;
 const SIDE_PADDING = 80;
 
@@ -29,12 +28,13 @@ interface IndustryCardProps {
   description: string;
   theme: typeof industryThemes[0];
   index: number;
+  width: number;
 }
 
-const IndustryCard = ({ name, icon: Icon, description, theme, index }: IndustryCardProps) => (
+const IndustryCard = ({ name, icon: Icon, description, theme, index, width }: IndustryCardProps) => (
   <div
     className="relative flex-shrink-0 overflow-hidden group rounded-2xl mx-2"
-    style={{ width: `${CARD_WIDTH}px`, height: '75vh' }}
+    style={{ width: `${width}px`, height: '75vh' }}
   >
     <img
       src={theme.image}
@@ -84,11 +84,21 @@ export function Industries() {
   const stripRef = useRef<HTMLDivElement>(null);
   const [translateX, setTranslateX] = useState(0);
   const [wrapperHeight, setWrapperHeight] = useState(0);
+  const [cardWidth, setCardWidth] = useState(400);
   const rafRef = useRef<number>(0);
   const currentTranslate = useRef(0);
   const targetTranslate = useRef(0);
 
-  const totalWidth = industries.length * CARD_WIDTH + SIDE_PADDING * 2;
+  useEffect(() => {
+    const handleResizeWidth = () => {
+      setCardWidth(window.innerWidth < 440 ? window.innerWidth - 60 : 400);
+    };
+    handleResizeWidth();
+    window.addEventListener('resize', handleResizeWidth);
+    return () => window.removeEventListener('resize', handleResizeWidth);
+  }, []);
+
+  const totalWidth = industries.length * cardWidth + SIDE_PADDING * 2;
 
   const calcDimensions = useCallback(() => {
     const maxTranslate = Math.max(0, totalWidth - window.innerWidth);
@@ -182,6 +192,7 @@ export function Industries() {
               description={industry.description}
               theme={industryThemes[index % industryThemes.length]}
               index={index}
+              width={cardWidth}
             />
           ))}
         </div>

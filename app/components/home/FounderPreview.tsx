@@ -62,7 +62,7 @@ export function FounderPreview() {
 
           {/* Right Side: Image Card */}
           <div className="lg:col-span-5 reveal-scale h-full">
-            <div className="relative h-full min-h-[450px]">
+            <div className="relative h-full min-h-[350px] lg:min-h-[450px]">
               {/* Offset Border Background */}
               <div className="absolute -top-4 -left-4 w-full h-full border-2 border-primary-300 rounded-[2rem]" />
 
@@ -82,10 +82,10 @@ export function FounderPreview() {
                 {/* Animated Scrolling Text (Overlay) */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center opacity-30 select-none mix-blend-overlay z-0">
                   <div className="whitespace-nowrap animate-marquee flex text-white/50">
-                    <span className="text-[8rem] font-bold uppercase mx-8">VR Associates</span>
-                    <span className="text-[8rem] font-bold uppercase mx-8">VR Associates</span>
-                    <span className="text-[8rem] font-bold uppercase mx-8">VR Associates</span>
-                    <span className="text-[8rem] font-bold uppercase mx-8">VR Associates</span>
+                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
+                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
+                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
+                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
                   </div>
                 </div>
 

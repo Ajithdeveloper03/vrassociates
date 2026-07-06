@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { navigation } from '@/app/lib/siteData';
 
 const Header = () => {
@@ -40,8 +42,8 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'py-3 shadow-md'
-          : 'bg-transparent py-5'
+          ? 'py-1 shadow-md'
+          : 'bg-transparent py-3'
       }`}
     >
       {/* Diagonally split background for scrolled state */}
@@ -50,41 +52,44 @@ const Header = () => {
         <div className="absolute inset-0 bg-primary-500" />
         {/* Left side (White) with diagonal cut */}
         <div 
-          className="absolute top-0 bottom-0 left-0 bg-white"
-          style={{ width: '28%', clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0% 100%)' }}
+          className="absolute top-0 bottom-0 left-0 bg-white w-[38%] lg:w-[35%] xl:w-[30%] 2xl:w-[28%]"
+          style={{ clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0% 100%)' }}
         />
       </div>
 
       <div className="container-custom relative z-10">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group">
-            <div className={`w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300 ${
-              isScrolled ? 'bg-primary-500' : 'bg-white/10 backdrop-blur-sm'
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className={`relative flex items-center justify-center transition-all duration-500 shrink-0 ${
+              isScrolled ? 'w-10 h-10 sm:w-12 sm:h-12' : 'w-24 h-20 sm:w-32 sm:h-28'
             }`}>
-              <span className="text-2xl font-serif font-bold text-white">
-                VR
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/viswanathanr/vr-logo.png" 
+                alt="VR Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
-            <div className="hidden sm:flex flex-col justify-center">
-              <p className={`text-lg font-bold leading-none tracking-wide mb-1 transition-colors duration-300 ${isScrolled ? 'text-secondary-900' : 'text-white'}`}>
+            <div className="hidden sm:flex flex-col justify-center -space-y-1">
+              <p className={`text-base xl:text-lg font-bold leading-none tracking-wide transition-colors duration-300 ${isScrolled ? 'text-secondary-900' : 'text-white'}`}>
                 Viswanathan R
               </p>
-              <p className={`text-lg font-bold leading-none tracking-wide transition-colors duration-300 ${isScrolled ? 'text-secondary-700' : 'text-white'}`}>
+              <p className={`text-base xl:text-lg font-bold leading-none tracking-wide transition-colors duration-300 ${isScrolled ? 'text-secondary-700' : 'text-white'}`}>
                 Associates
               </p>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1" ref={dropdownRef}>
+          <div className="hidden lg:flex items-center gap-0 xl:gap-1" ref={dropdownRef}>
             {navigation.main.map((item) => (
               <div key={item.name} className="relative">
                 {item.submenu ? (
                   <div className="relative">
                     <button
                       onClick={() => toggleDropdown(item.name)}
-                      className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer ${
+                      className={`flex items-center gap-1 px-2 xl:px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer ${
                         isScrolled
                           ? 'text-primary-950 hover:text-white hover:bg-primary-950/20'
                           : 'text-white/90 hover:text-white hover:bg-white/10'
@@ -114,45 +119,45 @@ const Header = () => {
                     >
                       <div className="py-2">
                         {item.submenu.map((subItem, index) => (
-                          <a
+                          <Link
                             key={subItem.name}
                             href={subItem.href}
                             className="block px-4 py-2.5 text-sm text-secondary-700 hover:text-primary-700 hover:bg-primary-50 transition-colors duration-150"
                             style={{ animationDelay: `${index * 50}ms` }}
                           >
                             {subItem.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <a
+                  <Link
                     href={item.href}
-                    className={`block px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    className={`block px-2 xl:px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                       isScrolled
                         ? 'text-primary-950 hover:text-white hover:bg-primary-950/20'
                         : 'text-white/90 hover:text-white hover:bg-white/10'
                     }`}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 )}
               </div>
             ))}
           </div>
 
           {/* CTA Button - Desktop */}
-          <a
+          <Link
             href={navigation.cta.href}
-            className={`hidden lg:inline-flex items-center gap-2 transition-colors duration-300 ${
+            className={`hidden lg:inline-flex items-center gap-2 transition-colors duration-300 whitespace-nowrap ${
               isScrolled
-                ? 'px-7 py-3.5 bg-primary-950 text-white hover:bg-primary-900 rounded-full font-semibold tracking-wide text-sm'
-                : 'btn-primary'
+                ? 'px-4 xl:px-7 py-2.5 xl:py-3.5 bg-primary-950 text-white hover:bg-primary-900 rounded-full font-semibold tracking-wide text-xs xl:text-sm'
+                : 'btn-primary text-xs xl:text-sm px-4 xl:px-7'
             }`}
           >
             {navigation.cta.name}
-          </a>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -204,23 +209,23 @@ const Header = () => {
                           isScrolled ? 'border-primary-200' : 'border-white/20'
                         }`}>
                           {item.submenu.map((subItem) => (
-                            <a
+                            <Link
                               key={subItem.name}
                               href={subItem.href}
                               className={`block px-4 py-2 text-sm rounded-lg transition-all duration-200 ${
                                 isScrolled
                                   ? 'text-secondary-600 hover:text-primary-700 hover:bg-white'
                                   : 'text-white/80 hover:text-white hover:bg-white/10'
-                              }`}
+                                }`}
                             >
                               {subItem.name}
-                            </a>
+                            </Link>
                           ))}
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <a
+                    <Link
                       href={item.href}
                       className={`block px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                         isScrolled
@@ -229,16 +234,16 @@ const Header = () => {
                       }`}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   )}
                 </div>
               ))}
-              <a
+              <Link
                 href={navigation.cta.href}
                 className="block w-full text-center btn-primary mt-4"
               >
                 {navigation.cta.name}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

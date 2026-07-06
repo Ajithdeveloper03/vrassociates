@@ -47,7 +47,7 @@ export function CoreValues() {
         </div>
 
         {/* Marquee Container */}
-        <div className="relative h-[600px] lg:h-[700px] overflow-hidden">
+        <div className="relative h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden">
           
           {/* Gradient Masks for smooth fading at top and bottom */}
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-secondary-50 to-transparent z-10 pointer-events-none" />

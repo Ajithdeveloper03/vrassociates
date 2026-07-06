@@ -29,7 +29,7 @@ export function CTABanner() {
     <section className="relative overflow-hidden">
       <div className="relative bg-primary-950 section-padding overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-          <span className="text-[20rem] font-bold text-white/[0.02] font-serif leading-none whitespace-nowrap">
+          <span className="text-[10rem] md:text-[15rem] lg:text-[20rem] font-bold text-white/[0.02] font-serif leading-none whitespace-nowrap">
             VRA
           </span>
         </div>
@@ -112,7 +112,7 @@ export function CTABanner() {
             <div className="reveal-scale lg:pl-6">
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 shadow-2xl">
                 <h3 className="text-xl font-bold text-white mb-1.5">Send us a Message</h3>
-                <p className="text-white/60 text-xs mb-5">Fill out the form below and we'll get back to you shortly.</p>
+                <p className="text-white/60 text-xs mb-5">Fill out the form below and we&apos;ll get back to you shortly.</p>
                 
                 <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
