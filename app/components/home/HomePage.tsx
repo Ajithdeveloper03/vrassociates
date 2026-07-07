@@ -5,8 +5,8 @@ import { TrustIndicators } from './TrustIndicators';
 import { Industries } from './Industries';
 import { AboutPreview } from './AboutPreview';
 import { FounderPreview } from './FounderPreview';
-import { ServicesGrid } from './ServicesGrid';
-import { CoreValues } from './CoreValues';
+import { FounderQualifications } from './FounderQualifications';
+
 import { CTABanner } from './CTABanner';
 
 const HomePage = () => {
@@ -17,8 +17,8 @@ const HomePage = () => {
       <Industries />
       <AboutPreview />
       <FounderPreview />
-      <ServicesGrid />
-      <CoreValues />
+      <FounderQualifications />
+
       <CTABanner />
     </main>
   );

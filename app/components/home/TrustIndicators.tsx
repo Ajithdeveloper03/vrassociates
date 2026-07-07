@@ -81,6 +81,11 @@ export function TrustIndicators() {
       />
 
       <div ref={ref} className="container-custom relative z-10">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-900 tracking-tight">
+            Why Businesses Trust Us
+          </h2>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-0 mb-4">
           {stats.map((stat, i) => (
             <div

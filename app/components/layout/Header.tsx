@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { navigation } from '@/app/lib/siteData';
 
 const Header = () => {
@@ -38,61 +40,34 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'py-3 shadow-md'
-          : 'bg-transparent py-5'
-      }`}
+      className="absolute top-0 left-0 right-0 z-50 py-3 bg-transparent"
     >
-      {/* Diagonally split background for scrolled state */}
-      <div className={`absolute inset-0 z-0 overflow-hidden transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
-        {/* Right side (Gold/Accent) */}
-        <div className="absolute inset-0 bg-primary-500" />
-        {/* Left side (Dark Navy) with diagonal cut */}
-        <div 
-          className="absolute top-0 bottom-0 left-0 bg-primary-950"
-          style={{ width: '28%', clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0% 100%)' }}
-        />
-      </div>
 
       <div className="container-custom relative z-10">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group">
-            <div className={`w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300 ${
-              isScrolled ? 'bg-primary-500' : 'bg-white/10 backdrop-blur-sm'
-            }`}>
-              <span className="text-2xl font-serif font-bold text-white">
-                VR
-              </span>
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className={`relative flex items-center justify-center transition-all duration-500 shrink-0 bg-transparent w-32 h-32`}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/viswanathanr/vr-logo.png" 
+                alt="VR Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
-            <div className="hidden sm:flex flex-col justify-center">
-              <p className={`text-lg font-bold leading-none text-white tracking-wide mb-1`}>
-                Viswanathan R
-              </p>
-              <p className={`text-lg font-bold leading-none text-white tracking-wide`}>
-                Associates
-              </p>
-            </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1" ref={dropdownRef}>
+          <div className="hidden lg:flex items-center gap-0 xl:gap-1" ref={dropdownRef}>
             {navigation.main.map((item) => (
               <div key={item.name} className="relative">
                 {item.submenu ? (
                   <div className="relative">
                     <button
                       onClick={() => toggleDropdown(item.name)}
-                      className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer ${
-                        isScrolled
-                          ? 'text-primary-950 hover:text-white hover:bg-primary-950/20'
-                          : 'text-white/90 hover:text-white hover:bg-white/10'
-                      } ${
+                      className={`flex items-center gap-1 px-2 xl:px-4 py-2 text-base font-medium rounded-lg transition-all duration-200 cursor-pointer text-secondary-900 hover:text-primary-700 hover:bg-white/50 ${
                         openDropdown === item.name
-                          ? isScrolled
-                            ? 'text-white bg-primary-950/20'
-                            : 'text-white bg-white/10'
+                          ? 'text-primary-700 bg-white/50'
                           : ''
                       }`}
                     >
@@ -114,54 +89,42 @@ const Header = () => {
                     >
                       <div className="py-2">
                         {item.submenu.map((subItem, index) => (
-                          <a
+                          <Link
                             key={subItem.name}
                             href={subItem.href}
-                            className="block px-4 py-2.5 text-sm text-secondary-700 hover:text-primary-700 hover:bg-primary-50 transition-colors duration-150"
+                            className="block px-4 py-2.5 text-base text-secondary-700 hover:text-primary-700 hover:bg-primary-50 transition-colors duration-150"
                             style={{ animationDelay: `${index * 50}ms` }}
                           >
                             {subItem.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <a
+                  <Link
                     href={item.href}
-                    className={`block px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                      isScrolled
-                        ? 'text-primary-950 hover:text-white hover:bg-primary-950/20'
-                        : 'text-white/90 hover:text-white hover:bg-white/10'
-                    }`}
+                    className="block px-2 xl:px-4 py-2 text-base font-medium rounded-lg transition-all duration-200 text-secondary-900 hover:text-primary-700 hover:bg-white/50"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 )}
               </div>
             ))}
           </div>
 
           {/* CTA Button - Desktop */}
-          <a
+          <Link
             href={navigation.cta.href}
-            className={`hidden lg:inline-flex items-center gap-2 transition-colors duration-300 ${
-              isScrolled
-                ? 'px-7 py-3.5 bg-primary-950 text-white hover:bg-primary-900 rounded-full font-semibold tracking-wide text-sm'
-                : 'btn-primary'
-            }`}
+            className={`hidden lg:inline-flex items-center gap-2 transition-colors duration-300 whitespace-nowrap btn-primary text-xs xl:text-sm px-4 xl:px-7`}
           >
             {navigation.cta.name}
-          </a>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors duration-200 ${
-              isScrolled
-                ? 'text-secondary-700 hover:bg-secondary-100'
-                : 'text-white hover:bg-white/10'
-            }`}
+            className="lg:hidden p-2 rounded-lg transition-colors duration-200 text-secondary-900 hover:bg-secondary-100"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -174,7 +137,7 @@ const Header = () => {
             isMobileMenuOpen ? 'max-h-screen mt-4' : 'max-h-0'
           }`}
         >
-          <div className={`rounded-2xl p-4 ${isScrolled ? 'bg-secondary-50' : 'bg-white/10 backdrop-blur-md'}`}>
+          <div className="rounded-2xl p-4 bg-white/90 backdrop-blur-md shadow-lg">
             <div className="space-y-2">
               {navigation.main.map((item) => (
                 <div key={item.name}>
@@ -182,11 +145,7 @@ const Header = () => {
                     <div>
                       <button
                         onClick={() => toggleDropdown(item.name)}
-                        className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-left transition-all duration-200 ${
-                          isScrolled
-                            ? 'text-secondary-700 hover:bg-white'
-                            : 'text-white hover:bg-white/10'
-                        }`}
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-left transition-all duration-200 text-secondary-900 hover:bg-white/50"
                       >
                         <span className="font-medium">{item.name}</span>
                         <ChevronDown
@@ -200,45 +159,35 @@ const Header = () => {
                           openDropdown === item.name ? 'max-h-96' : 'max-h-0'
                         }`}
                       >
-                        <div className={`ml-4 mt-2 space-y-1 border-l-2 ${
-                          isScrolled ? 'border-primary-200' : 'border-white/20'
-                        }`}>
+                        <div className="ml-4 mt-2 space-y-1 border-l-2 border-secondary-200">
                           {item.submenu.map((subItem) => (
-                            <a
+                            <Link
                               key={subItem.name}
                               href={subItem.href}
-                              className={`block px-4 py-2 text-sm rounded-lg transition-all duration-200 ${
-                                isScrolled
-                                  ? 'text-secondary-600 hover:text-primary-700 hover:bg-white'
-                                  : 'text-white/80 hover:text-white hover:bg-white/10'
-                              }`}
+                              className="block px-4 py-2 text-sm rounded-lg transition-all duration-200 text-secondary-600 hover:text-primary-700 hover:bg-white/50"
                             >
                               {subItem.name}
-                            </a>
+                            </Link>
                           ))}
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <a
+                    <Link
                       href={item.href}
-                      className={`block px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
-                        isScrolled
-                          ? 'text-secondary-700 hover:bg-white hover:text-primary-700'
-                          : 'text-white hover:bg-white/10'
-                      }`}
+                      className="block px-4 py-3 rounded-lg font-medium transition-all duration-200 text-secondary-900 hover:bg-white/50 hover:text-primary-700"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   )}
                 </div>
               ))}
-              <a
+              <Link
                 href={navigation.cta.href}
                 className="block w-full text-center btn-primary mt-4"
               >
                 {navigation.cta.name}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

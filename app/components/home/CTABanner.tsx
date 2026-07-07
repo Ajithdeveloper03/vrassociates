@@ -27,9 +27,9 @@ export function CTABanner() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="relative bg-primary-950 section-padding overflow-hidden">
+      <div className="relative bg-primary-50 section-padding overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-          <span className="text-[20rem] font-bold text-white/[0.02] font-serif leading-none whitespace-nowrap">
+          <span className="text-[10rem] md:text-[15rem] lg:text-[20rem] font-bold text-primary-900/[0.03] font-serif leading-none whitespace-nowrap">
             VRA
           </span>
         </div>
@@ -43,10 +43,10 @@ export function CTABanner() {
             <div className="flex flex-col h-full justify-between lg:pr-8">
               <div>
                 <div className="section-label-dark reveal">Get Started</div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mt-4 mb-4 reveal">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-900 leading-tight mt-4 mb-4 reveal">
                   Ready to Strengthen<br />
                   Your Business<br />
-                  <span className="text-primary-300">Finances?</span>
+                  <span className="text-primary-600">Finances?</span>
                 </h2>
                 <p className="section-subtitle-white mb-6 reveal">
                   Let&apos;s discuss how our expertise can help you navigate complexity, optimize operations, and create lasting value.
@@ -56,41 +56,41 @@ export function CTABanner() {
               {/* Info Box (Moved from right, removed box styling) */}
               <div className="reveal-scale mt-4">
                 <div className="space-y-5">
-                  <h3 className="text-lg font-semibold text-white mb-3">Reach Us Directly</h3>
+                  <h3 className="text-lg font-semibold text-secondary-900 mb-3">Reach Us Directly</h3>
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-4">
                       <a href={`mailto:${companyInfo.contact.email}`}
-                        className="flex items-start gap-3 group hover:text-primary-300 transition-colors">
-                        <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-600 transition-colors duration-300">
-                          <Mail className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" />
+                        className="flex items-start gap-3 group hover:text-primary-600 transition-colors">
+                        <div className="w-9 h-9 rounded-full bg-white border border-secondary-200 shadow-sm flex items-center justify-center shrink-0 group-hover:bg-primary-600 transition-colors duration-300">
+                          <Mail className="w-4 h-4 text-secondary-500 group-hover:text-white transition-colors" />
                         </div>
                         <div>
-                          <div className="text-white/40 text-xs mb-0.5">Email</div>
-                          <div className="text-white/90 text-[13px]">{companyInfo.contact.email}</div>
+                          <div className="text-secondary-500 text-xs mb-0.5">Email</div>
+                          <div className="text-secondary-900 font-medium text-[13px]">{companyInfo.contact.email}</div>
                         </div>
                       </a>
 
                       <a href={`tel:${companyInfo.contact.phone.replace(/\s/g, '')}`}
-                        className="flex items-start gap-3 group hover:text-primary-300 transition-colors">
-                        <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-600 transition-colors duration-300">
-                          <Phone className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" />
+                        className="flex items-start gap-3 group hover:text-primary-600 transition-colors">
+                        <div className="w-9 h-9 rounded-full bg-white border border-secondary-200 shadow-sm flex items-center justify-center shrink-0 group-hover:bg-primary-600 transition-colors duration-300">
+                          <Phone className="w-4 h-4 text-secondary-500 group-hover:text-white transition-colors" />
                         </div>
                         <div>
-                          <div className="text-white/40 text-xs mb-0.5">Phone</div>
-                          <div className="text-white/90 text-[13px]">{companyInfo.contact.phone}</div>
+                          <div className="text-secondary-500 text-xs mb-0.5">Phone</div>
+                          <div className="text-secondary-900 font-medium text-[13px]">{companyInfo.contact.phone}</div>
                         </div>
                       </a>
                     </div>
 
                     <div className="space-y-4">
                       <div className="flex items-start gap-3">
-                        <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                          <MapPin className="w-4 h-4 text-white/70" />
+                        <div className="w-9 h-9 rounded-full bg-white border border-secondary-200 shadow-sm flex items-center justify-center shrink-0">
+                          <MapPin className="w-4 h-4 text-secondary-500" />
                         </div>
                         <div>
-                          <div className="text-white/40 text-xs mb-0.5">Office</div>
-                          <address className="text-white/90 text-[13px] not-italic leading-relaxed">
+                          <div className="text-secondary-500 text-xs mb-0.5">Office</div>
+                          <address className="text-secondary-900 font-medium text-[13px] not-italic leading-relaxed">
                             {companyInfo.address.line1},<br />
                             {companyInfo.address.line2},<br />
                             {companyInfo.address.city} — {companyInfo.address.pincode}
@@ -100,9 +100,9 @@ export function CTABanner() {
                     </div>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-white/10 flex flex-col sm:flex-row gap-2 sm:gap-6">
-                    <div className="text-white/40 text-xs">Business Hours:</div>
-                    <div className="text-white/70 text-sm">Mon–Fri: 9:00 AM – 6:00 PM &nbsp;|&nbsp; Sat: 9:00 AM – 1:00 PM</div>
+                  <div className="pt-4 mt-4 border-t border-secondary-200 flex flex-col sm:flex-row gap-2 sm:gap-6">
+                    <div className="text-secondary-500 font-medium text-xs">Business Hours:</div>
+                    <div className="text-secondary-700 font-medium text-sm">Mon–Fri: 9:00 AM – 6:00 PM &nbsp;|&nbsp; Sat: 9:00 AM – 1:00 PM</div>
                   </div>
                 </div>
               </div>
@@ -110,35 +110,35 @@ export function CTABanner() {
 
             {/* Right Side: Contact Form */}
             <div className="reveal-scale lg:pl-6">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 shadow-2xl">
-                <h3 className="text-xl font-bold text-white mb-1.5">Send us a Message</h3>
-                <p className="text-white/60 text-xs mb-5">Fill out the form below and we'll get back to you shortly.</p>
+              <div className="bg-white border border-secondary-200 rounded-2xl p-6 shadow-xl">
+                <h3 className="text-xl font-bold text-secondary-900 mb-1.5">Send us a Message</h3>
+                <p className="text-secondary-600 text-xs mb-5">Fill out the form below and we&apos;ll get back to you shortly.</p>
                 
                 <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium text-white/70">First Name</label>
-                      <input type="text" className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-white placeholder-white/30 transition-all text-sm" placeholder="John" />
+                      <label className="text-[11px] font-bold text-secondary-700">First Name</label>
+                      <input type="text" className="w-full px-3 py-2 bg-secondary-50 border border-secondary-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-secondary-900 placeholder-secondary-400 transition-all text-sm" placeholder="John" />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[11px] font-medium text-white/70">Last Name</label>
-                      <input type="text" className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-white placeholder-white/30 transition-all text-sm" placeholder="Doe" />
+                      <label className="text-[11px] font-bold text-secondary-700">Last Name</label>
+                      <input type="text" className="w-full px-3 py-2 bg-secondary-50 border border-secondary-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-secondary-900 placeholder-secondary-400 transition-all text-sm" placeholder="Doe" />
                     </div>
                   </div>
                   
                   <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-white/70">Email Address</label>
-                    <input type="email" className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-white placeholder-white/30 transition-all text-sm" placeholder="john@example.com" />
+                    <label className="text-[11px] font-bold text-secondary-700">Email Address</label>
+                    <input type="email" className="w-full px-3 py-2 bg-secondary-50 border border-secondary-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-secondary-900 placeholder-secondary-400 transition-all text-sm" placeholder="john@example.com" />
                   </div>
                   
                   <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-white/70">Phone Number</label>
-                    <input type="tel" className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-white placeholder-white/30 transition-all text-sm" placeholder="+91 98765 43210" />
+                    <label className="text-[11px] font-bold text-secondary-700">Phone Number</label>
+                    <input type="tel" className="w-full px-3 py-2 bg-secondary-50 border border-secondary-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-secondary-900 placeholder-secondary-400 transition-all text-sm" placeholder="+91 98765 43210" />
                   </div>
                   
                   <div className="space-y-1">
-                    <label className="text-[11px] font-medium text-white/70">Message</label>
-                    <textarea rows={3} className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-white placeholder-white/30 transition-all resize-none text-sm" placeholder="How can we help you?"></textarea>
+                    <label className="text-[11px] font-bold text-secondary-700">Message</label>
+                    <textarea rows={3} className="w-full px-3 py-2 bg-secondary-50 border border-secondary-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-secondary-900 placeholder-secondary-400 transition-all resize-none text-sm" placeholder="How can we help you?"></textarea>
                   </div>
                   
                   <button type="submit" className="w-full btn-primary py-2.5 text-sm mt-1 group">

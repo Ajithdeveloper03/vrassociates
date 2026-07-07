@@ -5,12 +5,12 @@ import { ArrowRight } from 'lucide-react';
 import { companyInfo } from '@/app/lib/siteData';
 
 const words = ['Finance.', 'Transformation.', 'Value Creation.'];
-const wordColors = ['text-white', 'text-primary-300', 'text-accent-400'];
+const wordColors = ['text-secondary-900', 'text-primary-600', 'text-accent-600'];
 
 const bannerImages = [
-  'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?q=80&w=2000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2000&auto=format&fit=crop'
+  'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2000&auto=format&fit=crop'
 ];
 
 const Hero = () => {
@@ -34,7 +34,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+    <section className="relative min-h-[100dvh] flex flex-col overflow-hidden pt-28 sm:pt-32 lg:pt-36">
       
       {/* Background Images Slider */}
       {bannerImages.map((src, index) => (
@@ -52,40 +52,39 @@ const Hero = () => {
         </div>
       ))}
 
-      {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 bg-slate-950/70 pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-transparent pointer-events-none z-0" />
+      {/* Light overlay for contrast */}
+      <div className="absolute inset-0 pointer-events-none z-0" style={{ background: 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.85) 30%, transparent 45%)' }} />
 
       {/* Grid overlay */}
       <div className="absolute inset-0 opacity-[0.03] z-0 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
         }}
       />
 
       {/* Content */}
-      <div className="container-custom w-full relative z-10 pb-20 pt-10 flex flex-col items-start">
+      <div className="container-custom w-full relative z-10 flex-1 flex flex-col justify-center">
         <div className="max-w-3xl w-full">
           
           {/* Pill badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white backdrop-blur-sm rounded-full border border-secondary-200 mb-6 lg:mb-8 animate-fade-in shadow-sm">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-400" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-500" />
             </span>
-            <span className="text-xs font-semibold tracking-widest text-white/80 uppercase">
+            <span className="text-[10px] sm:text-xs font-semibold tracking-widest text-secondary-600 uppercase">
               Trusted by 970+ businesses worldwide
             </span>
           </div>
 
           {/* Main headline */}
           <div className="mb-6">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] animate-fade-in-up drop-shadow-2xl">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-secondary-900 leading-[1.1] animate-fade-in-up drop-shadow-md">
               Corporate
             </h1>
             {/* Animated word cycle */}
-            <div className="relative my-2">
+            <div className="relative my-1 sm:my-2">
               {/* Structural invisible element to maintain container size for longest text */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] opacity-0 pointer-events-none select-none" aria-hidden="true">
                 Value Creation.
@@ -96,7 +95,7 @@ const Hero = () => {
                 {words.map((word, i) => (
                   <h1
                     key={word}
-                    className={`absolute top-0 left-0 w-full text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] transition-all duration-700 ease-in-out drop-shadow-2xl ${wordColors[i]} ${
+                    className={`absolute top-0 left-0 w-full text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] transition-all duration-700 ease-in-out drop-shadow-md ${wordColors[i]} ${
                       i === currentWord
                         ? 'translate-y-0 opacity-100 z-10 scale-100'
                         : i < currentWord || (currentWord === 0 && i === words.length - 1)
@@ -111,7 +110,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <p className="text-lg text-white/70 max-w-xl mb-10 leading-relaxed animate-fade-in-up animate-delay-200">
+          <p className="text-base sm:text-lg text-secondary-600 max-w-xl mb-8 lg:mb-10 leading-relaxed animate-fade-in-up animate-delay-200">
             {companyInfo.description} With 25+ years of global experience delivering measurable results for businesses, investors, and corporate leaders.
           </p>
 
@@ -121,16 +120,16 @@ const Hero = () => {
               Book a Consultation
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
             </span>
-            <span className="btn-outline cursor-pointer text-sm tracking-wider bg-white/5">
+            <span className="btn-secondary cursor-pointer text-sm tracking-wider">
               Explore Services
             </span>
           </div>
 
           {/* Credentials */}
-          <div className="flex flex-wrap gap-x-6 gap-y-3 mt-12 animate-fade-in animate-delay-500">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-x-6 gap-y-3 mt-4 lg:mt-6 animate-fade-in animate-delay-500">
             {['IBBI Registered Valuer', 'IBBI Insolvency Professional', 'Independent Director'].map((cred) => (
-              <div key={cred} className="flex items-center gap-2 text-white/70 text-sm font-medium">
-                <div className="w-1.5 h-1.5 rounded-full bg-accent-400 shadow-[0_0_10px_rgba(251,191,36,0.5)]" />
+              <div key={cred} className="flex items-center gap-2 text-secondary-600 text-sm font-medium">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent-500 shadow-[0_0_10px_rgba(197,154,27,0.3)]" />
                 {cred}
               </div>
             ))}
@@ -139,33 +138,28 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator and Navigation Dots */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-8 z-20 w-full max-w-sm">
-        
-        {/* Slider Navigation Dots */}
-        <div className="flex items-center gap-3">
-          {bannerImages.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentBg(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-              className={`transition-all duration-300 rounded-full ${
-                currentBg === idx 
-                  ? 'w-8 h-2 bg-accent-400' 
-                  : 'w-2 h-2 bg-white/50 hover:bg-white/80'
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Scroll down indicator */}
-        <div className="flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
-          <span className="text-white text-xs tracking-widest uppercase">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-white to-transparent" />
-        </div>
+      {/* Slider Navigation Dots - Right Aligned */}
+      <div className="absolute right-4 sm:right-8 lg:right-12 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3">
+        {bannerImages.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentBg(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+            className={`transition-all duration-300 rounded-full shadow-sm ${
+              currentBg === idx 
+                ? 'w-2 h-8 bg-accent-500' 
+                : 'w-2 h-2 bg-secondary-300 hover:bg-secondary-400'
+            }`}
+          />
+        ))}
       </div>
 
-      {/* Bottom diagonal clip removed to straighten the section */}
+      {/* Scroll indicator (without text) */}
+      <div className="relative z-20 flex flex-col items-center mt-auto pb-4">
+        <div className="flex flex-col items-center opacity-50 hover:opacity-100 transition-opacity">
+          <div className="w-px h-8 sm:h-12 bg-gradient-to-b from-secondary-400 to-transparent" />
+        </div>
+      </div>
     </section>
   );
 };

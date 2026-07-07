@@ -19,7 +19,6 @@ const industryThemes = [
   { from: '#0d2137', to: '#0a3d62', accent: '#22d3ee', image: 'https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=80&w=800' },
 ];
 
-const CARD_WIDTH = 400;
 const CARD_GAP = 0;
 const SIDE_PADDING = 80;
 
@@ -29,12 +28,13 @@ interface IndustryCardProps {
   description: string;
   theme: typeof industryThemes[0];
   index: number;
+  width: number;
 }
 
-const IndustryCard = ({ name, icon: Icon, description, theme, index }: IndustryCardProps) => (
+const IndustryCard = ({ name, icon: Icon, description, theme, index, width }: IndustryCardProps) => (
   <div
     className="relative flex-shrink-0 overflow-hidden group rounded-2xl mx-2"
-    style={{ width: `${CARD_WIDTH}px`, height: '75vh' }}
+    style={{ width: `${width}px`, height: '75vh' }}
   >
     <img
       src={theme.image}
@@ -45,7 +45,7 @@ const IndustryCard = ({ name, icon: Icon, description, theme, index }: IndustryC
     <div
       className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-90"
       style={{
-        background: `linear-gradient(to bottom, ${theme.from}22 0%, ${theme.to}99 60%, ${theme.from}FA 100%)`,
+        background: `linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 30%, transparent 50%)`,
       }}
     />
 
@@ -61,10 +61,8 @@ const IndustryCard = ({ name, icon: Icon, description, theme, index }: IndustryC
         style={{ backgroundColor: theme.accent }}
       />
 
-      <div
-        className="w-14 h-14 rounded-xl mb-5 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1"
-        style={{ backgroundColor: `${theme.accent}22`, border: `1px solid ${theme.accent}44` }}
-      >
+      <div className="w-14 h-14 rounded-2xl mb-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2"
+        style={{ backgroundColor: `${theme.accent}22`, border: `1px solid ${theme.accent}44` }}>
         <Icon className="w-7 h-7" style={{ color: theme.accent }} />
       </div>
 
@@ -72,7 +70,7 @@ const IndustryCard = ({ name, icon: Icon, description, theme, index }: IndustryC
         {name}
       </h3>
 
-      <p className="text-white/60 text-sm leading-relaxed max-w-xs translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
+      <p className="text-white/70 text-sm leading-relaxed max-w-xs translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
         {description}
       </p>
     </div>
@@ -84,11 +82,21 @@ export function Industries() {
   const stripRef = useRef<HTMLDivElement>(null);
   const [translateX, setTranslateX] = useState(0);
   const [wrapperHeight, setWrapperHeight] = useState(0);
+  const [cardWidth, setCardWidth] = useState(400);
   const rafRef = useRef<number>(0);
   const currentTranslate = useRef(0);
   const targetTranslate = useRef(0);
 
-  const totalWidth = industries.length * CARD_WIDTH + SIDE_PADDING * 2;
+  useEffect(() => {
+    const handleResizeWidth = () => {
+      setCardWidth(window.innerWidth < 440 ? window.innerWidth - 60 : 400);
+    };
+    handleResizeWidth();
+    window.addEventListener('resize', handleResizeWidth);
+    return () => window.removeEventListener('resize', handleResizeWidth);
+  }, []);
+
+  const totalWidth = industries.length * cardWidth + SIDE_PADDING * 2;
 
   const calcDimensions = useCallback(() => {
     const maxTranslate = Math.max(0, totalWidth - window.innerWidth);
@@ -151,14 +159,14 @@ export function Industries() {
   const { maxTranslate } = calcDimensions();
 
   return (
-    <div ref={wrapperRef} style={{ height: wrapperHeight || '600vh' }} className="relative bg-secondary-950">
+    <div ref={wrapperRef} style={{ height: wrapperHeight || '600vh' }} className="relative bg-secondary-50">
       <div className="sticky top-0 overflow-hidden flex flex-col justify-center" style={{ height: '100vh' }}>
         <div className="w-full z-30 pt-10 pb-4 px-10 shrink-0">
           <div className="flex flex-col items-center text-center max-w-7xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white/70 text-xs font-bold tracking-widest uppercase rounded-full border border-white/20 mb-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-secondary-100 text-secondary-600 text-xs font-bold tracking-widest uppercase rounded-full border border-secondary-200 mb-3 shadow-sm">
               Cross-Industry Expertise
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-secondary-900 leading-tight drop-shadow-sm">
               Industries We Serve
             </h2>
           </div>
@@ -182,18 +190,19 @@ export function Industries() {
               description={industry.description}
               theme={industryThemes[index % industryThemes.length]}
               index={index}
+              width={cardWidth}
             />
           ))}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-30">
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-secondary-200 z-30">
           <div
             className="h-full bg-primary-500 transition-none"
             style={{ width: `${maxTranslate > 0 ? (translateX / maxTranslate) * 100 : 0}%` }}
           />
         </div>
 
-        <div className="absolute bottom-6 right-10 z-30 flex items-center gap-2 text-white/30 text-xs tracking-widest uppercase">
+        <div className="absolute bottom-6 right-10 z-30 flex items-center gap-2 text-secondary-400 text-xs tracking-widest uppercase font-semibold">
           <span>Drag or Scroll</span>
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />

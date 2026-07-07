@@ -5,17 +5,18 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          50:  '#F8FCFF',
-          100: '#E0F2FE',
-          200: '#BAE6FD',
-          300: '#38BDF8',
-          400: '#0EA5E9',
-          500: '#0284C7',
-          600: '#0369A1',
-          700: '#075985',
-          800: '#0c4a6e',
-          900: '#082f49',
-          950: '#041f33',
+          50:  '#F4F3F0',
+          100: '#E2E8F0',
+          200: '#CBD5E1',
+          300: '#969AA6',
+          400: '#64748B',
+          500: '#1F2C50',
+          600: '#1F2C50',
+          700: '#1F2C50',
+          800: '#1F2C50',
+          900: '#1F2C50',
+          950: '#1F2C50',
+          DEFAULT: '#1F2C50',
         },
         secondary: {
           50:  '#F8FCFF',
@@ -31,16 +32,25 @@ module.exports = {
           950: '#020617',
         },
         accent: {
-          50:  '#F8FCFF',
-          100: '#E0F2FE',
-          200: '#BAE6FD',
-          300: '#38BDF8',
-          400: '#0EA5E9',
-          500: '#E0F2FE',
-          600: '#38BDF8',
-          700: '#0284C7',
-          800: '#0369A1',
-          900: '#075985',
+          50:  '#fdfaf3',
+          100: '#f9f3e1',
+          200: '#f3e5c4',
+          300: '#ebd39d',
+          400: '#C59E5E', // Gold (Accent)
+          500: '#B28F52', // Gold (Primary)
+          600: '#937028', // Dark Gold
+          700: '#7A5D21',
+          800: '#614A1A',
+          900: '#493714',
+          950: '#30240D',
+        },
+        custom: {
+          navy: '#1F2C50',
+          gold: '#B28F52',
+          goldAccent: '#C59E5E',
+          darkGold: '#937028',
+          offWhite: '#F4F3F0',
+          silverGrey: '#969AA6',
         },
         success: {
           50:  '#f0fdf4',
@@ -55,8 +65,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans:  ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
+        sans:  ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Georgia', 'serif'],
       },
       animation: {
         'float':        'float 6s ease-in-out infinite',

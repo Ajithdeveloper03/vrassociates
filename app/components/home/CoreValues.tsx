@@ -32,12 +32,12 @@ export function CoreValues() {
   const col3 = [...coreValues.slice(5), ...coreValues.slice(0, 5)];
 
   return (
-    <section className="relative py-24 bg-secondary-50 overflow-hidden">
+    <section className="relative pt-[20px] pb-24 bg-secondary-50 overflow-hidden">
       {/* Background Glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary-200/40 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-4 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-secondary-900 mb-6">
             Our Principles
           </h2>
@@ -47,7 +47,7 @@ export function CoreValues() {
         </div>
 
         {/* Marquee Container */}
-        <div className="relative h-[600px] lg:h-[700px] overflow-hidden">
+        <div className="relative h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden">
           
           {/* Gradient Masks for smooth fading at top and bottom */}
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-secondary-50 to-transparent z-10 pointer-events-none" />

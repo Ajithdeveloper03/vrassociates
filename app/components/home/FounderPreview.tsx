@@ -35,39 +35,28 @@ export function FounderPreview() {
             <h2 className="section-title mt-4 mb-6 reveal">
               Meet Our <span className="gradient-text">Founder</span>
             </h2>
-            <p className="text-secondary-600 text-lg leading-relaxed mb-8 reveal">
-              {founder.bio}
-            </p>
-
-            <div className="space-y-1 mb-8">
-              <p className="text-xs font-bold tracking-widest text-secondary-500 uppercase reveal mb-2">
-                Qualifications & Credentials
+            <div className="text-secondary-600 text-lg leading-relaxed mb-8 reveal space-y-4">
+              <p>
+                Mr. Viswanathan Rajagopalan is a highly accomplished finance professional with over 25 years of international experience in corporate finance, cost management, business valuation, restructuring, governance, and strategic advisory.
               </p>
-              {founder.qualifications.map((qual, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 p-2 rounded-xl hover:bg-primary-50 transition-colors duration-200 reveal"
-                >
-                  <CheckCircle2 className="w-5 h-5 text-primary-600 shrink-0 mt-0.5" />
-                  <span className="text-secondary-700 text-sm">{qual}</span>
-                </div>
-              ))}
+              <p>
+                He has successfully worked across India, the Middle East, Africa, and North America, advising multinational corporations, financial institutions, manufacturing companies, healthcare organizations, mining businesses, and technology companies.
+              </p>
+              <p>
+                His multidisciplinary qualifications and practical industry expertise enable him to provide holistic business solutions that combine finance, technology, governance, and operational excellence.
+              </p>
             </div>
 
-            <span className="btn-secondary group cursor-pointer reveal">
-              View Full Profile
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </span>
           </div>
 
           {/* Right Side: Image Card */}
           <div className="lg:col-span-5 reveal-scale h-full">
-            <div className="relative h-full min-h-[450px]">
+            <div className="relative h-full min-h-[350px] lg:min-h-[450px]">
               {/* Offset Border Background */}
               <div className="absolute -top-4 -left-4 w-full h-full border-2 border-primary-300 rounded-[2rem]" />
 
               {/* Main Card */}
-              <div className="relative h-full rounded-[2rem] overflow-hidden bg-primary-900 flex flex-col items-center shadow-2xl">
+              <div className="relative h-full rounded-[2rem] overflow-hidden bg-white flex flex-col items-center shadow-soft-xl border border-secondary-100">
                 
                 {/* Full Container Image */}
                 <img 
@@ -77,22 +66,22 @@ export function FounderPreview() {
                 />
 
                 {/* Bottom Gradient for Text Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-950/95 via-primary-900/40 to-transparent z-0" />
+                <div className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 25%, transparent 45%)' }} />
 
                 {/* Animated Scrolling Text (Overlay) */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center opacity-30 select-none mix-blend-overlay z-0">
                   <div className="whitespace-nowrap animate-marquee flex text-white/50">
-                    <span className="text-[8rem] font-bold uppercase mx-8">VR Associates</span>
-                    <span className="text-[8rem] font-bold uppercase mx-8">VR Associates</span>
-                    <span className="text-[8rem] font-bold uppercase mx-8">VR Associates</span>
-                    <span className="text-[8rem] font-bold uppercase mx-8">VR Associates</span>
+                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
+                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
+                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
+                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
                   </div>
                 </div>
 
                 {/* Bottom Name & Title */}
                 <div className="relative z-10 w-full text-center pb-10 px-6 mt-auto">
-                  <h3 className="text-3xl font-bold text-white tracking-wide mb-1.5 drop-shadow-lg">{founder.name}</h3>
-                  <p className="text-primary-300 text-sm font-medium tracking-wider drop-shadow-md">{founder.title}</p>
+                  <h3 className="text-3xl font-bold text-white tracking-wide mb-1.5 drop-shadow-sm">{founder.name}</h3>
+                  <p className="text-primary-300 text-sm font-bold tracking-wider drop-shadow-sm">{founder.title}</p>
                 </div>
               </div>
             </div>

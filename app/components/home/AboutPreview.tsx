@@ -29,7 +29,7 @@ export function AboutPreview() {
     <section className="relative bg-white overflow-hidden">
       <div ref={ref} className="grid lg:grid-cols-2 min-h-[90vh]">
         <div className="flex flex-col justify-center px-6 lg:px-10 py-10 lg:py-16 reveal-left h-full w-full">
-          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-center px-10 lg:px-16 py-16 min-h-[500px]">
+          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-center px-10 lg:px-16 py-16 min-h-[350px] md:min-h-[500px]">
             <div className="absolute inset-0 z-0">
               <img
                 src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
