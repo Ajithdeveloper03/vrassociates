@@ -109,23 +109,23 @@ export function ServicesGrid() {
               />
             ))}
 
-            {/* Dark CTA Card matching reference */}
-            <div className="bg-[#151c2c] rounded p-8 flex flex-col justify-center items-start shadow-xl reveal relative overflow-hidden group min-h-[220px]">
+            {/* Light CTA Card matching theme */}
+            <div className="bg-white border border-secondary-200 rounded p-8 flex flex-col justify-center items-start shadow-sm hover:shadow-md transition-shadow reveal relative overflow-hidden group min-h-[220px]">
               {/* Subtle background grid pattern */}
               <div className="absolute top-0 right-0 w-32 h-32 opacity-10"
                 style={{
-                  backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+                  backgroundImage: 'linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)',
                   backgroundSize: '24px 24px',
                 }}
               />
               
-              <h3 className="relative z-10 text-[22px] font-bold text-white mb-8 leading-snug tracking-tight">
+              <h3 className="relative z-10 text-[22px] font-bold text-secondary-900 mb-8 leading-snug tracking-tight">
                 Explore our all<br />expertises we offers
               </h3>
               
-              <button className="relative z-10 inline-flex items-center gap-3 px-4 py-2 bg-white rounded shadow hover:bg-gray-50 transition-colors group/btn">
+              <button className="relative z-10 inline-flex items-center gap-3 px-4 py-2 bg-secondary-50 rounded border border-secondary-200 hover:bg-secondary-100 transition-colors group/btn">
                 <span className="text-[11px] font-bold text-secondary-900">View All Services</span>
-                <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center group-hover/btn:scale-110 transition-transform">
+                <div className="w-6 h-6 rounded-full bg-primary-600 flex items-center justify-center group-hover/btn:scale-110 transition-transform">
                   <ArrowRight className="w-3 h-3 text-white" />
                 </div>
               </button>
