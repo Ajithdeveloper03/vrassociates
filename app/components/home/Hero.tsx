@@ -1,168 +1,123 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { companyInfo } from '@/app/lib/siteData';
+import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
-const words = ['Finance.', 'Transformation.', 'Value Creation.'];
-const wordColors = ['text-secondary-900', 'text-primary-600', 'text-accent-600'];
-
-const bannerImages = [
-  'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2000&auto=format&fit=crop'
+const slides = [
+  {
+    src: "https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=2000&auto=format&fit=crop",
+    title: "Corporate Finance."
+  },
+  {
+    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop",
+    title: "Business Transformation."
+  },
+  {
+    src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2000&auto=format&fit=crop",
+    title: "Value Creation."
+  }
 ];
 
-const Hero = () => {
-  const [currentWord, setCurrentWord] = useState(0);
-  const [currentBg, setCurrentBg] = useState(0);
+export const Hero = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const imagesRef = useRef<(HTMLImageElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Word cycler
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 2200);
-    return () => clearInterval(interval);
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
   }, []);
 
-  // Background slider cycler
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBg((prev) => (prev + 1) % bannerImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+    imagesRef.current.forEach((img, index) => {
+      if (img) {
+        gsap.to(img, {
+          opacity: index === currentSlide ? 0.7 : 0,
+          scale: index === currentSlide ? 1 : 1.05,
+          duration: 1.5,
+          ease: 'power2.inOut',
+        });
+      }
+    });
+  }, [currentSlide]);
+
+  useGSAP(() => {
+    gsap.fromTo('.hero-text',
+      { opacity: 0, x: -50 },
+      { opacity: 1, x: 0, duration: 1.2, stagger: 0.2, ease: 'power3.out', delay: 0.3 }
+    );
+    gsap.fromTo('.hero-nav',
+      { opacity: 0, x: 50 },
+      { opacity: 1, x: 0, duration: 1, ease: 'power3.out', delay: 1 }
+    );
+  }, { scope: containerRef });
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col overflow-hidden pt-28 sm:pt-32 lg:pt-36">
-      
-      {/* Background Images Slider */}
-      {bannerImages.map((src, index) => (
-        <div
-          key={src}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentBg ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <img
-            src={src}
-            alt="Hero Background"
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
-      ))}
+    <section className="relative w-full min-h-[100vh] flex flex-col justify-center bg-gray-900 overflow-hidden" ref={containerRef}>
 
-      {/* Light overlay for contrast */}
-      <div className="absolute inset-0 pointer-events-none z-0" style={{ background: 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.85) 30%, transparent 45%)' }} />
-
-      {/* Grid overlay */}
-      <div className="absolute inset-0 opacity-[0.03] z-0 pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }}
-      />
-
-      {/* Content */}
-      <div className="container-custom w-full relative z-10 flex-1 flex flex-col justify-center">
-        <div className="max-w-3xl w-full">
-          
-          {/* Pill badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white backdrop-blur-sm rounded-full border border-secondary-200 mb-6 lg:mb-8 animate-fade-in shadow-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-500 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-500" />
-            </span>
-            <span className="text-[10px] sm:text-xs font-semibold tracking-widest text-secondary-600 uppercase">
-              Trusted by 970+ businesses worldwide
-            </span>
-          </div>
-
-          {/* Main headline */}
-          <div className="mb-6">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-secondary-900 leading-[1.1] animate-fade-in-up drop-shadow-md">
-              Corporate
-            </h1>
-            {/* Animated word cycle */}
-            <div className="relative my-1 sm:my-2">
-              {/* Structural invisible element to maintain container size for longest text */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] opacity-0 pointer-events-none select-none" aria-hidden="true">
-                Value Creation.
-              </h1>
-
-              {/* Animated words container */}
-              <div className="absolute inset-0">
-                {words.map((word, i) => (
-                  <h1
-                    key={word}
-                    className={`absolute top-0 left-0 w-full text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] transition-all duration-700 ease-in-out drop-shadow-md ${wordColors[i]} ${
-                      i === currentWord
-                        ? 'translate-y-0 opacity-100 z-10 scale-100'
-                        : i < currentWord || (currentWord === 0 && i === words.length - 1)
-                          ? '-translate-y-8 opacity-0 z-0 scale-95'
-                          : 'translate-y-8 opacity-0 z-0 scale-95'
-                    }`}
-                  >
-                    {word}
-                  </h1>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <p className="text-base sm:text-lg text-secondary-600 max-w-xl mb-8 lg:mb-10 leading-relaxed animate-fade-in-up animate-delay-200">
-            {companyInfo.description} With 25+ years of global experience delivering measurable results for businesses, investors, and corporate leaders.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-4 animate-fade-in-up animate-delay-300">
-            <span className="btn-primary group cursor-pointer text-sm tracking-wider">
-              Book a Consultation
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-            </span>
-            <span className="btn-secondary cursor-pointer text-sm tracking-wider">
-              Explore Services
-            </span>
-          </div>
-
-          {/* Credentials */}
-          <div className="flex flex-col sm:flex-row flex-wrap gap-x-6 gap-y-3 mt-4 lg:mt-6 animate-fade-in animate-delay-500">
-            {['IBBI Registered Valuer', 'IBBI Insolvency Professional', 'Independent Director'].map((cred) => (
-              <div key={cred} className="flex items-center gap-2 text-secondary-600 text-sm font-medium">
-                <div className="w-1.5 h-1.5 rounded-full bg-accent-500 shadow-[0_0_10px_rgba(197,154,27,0.3)]" />
-                {cred}
-              </div>
-            ))}
-          </div>
-          
-        </div>
-      </div>
-
-      {/* Slider Navigation Dots - Right Aligned */}
-      <div className="absolute right-4 sm:right-8 lg:right-12 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3">
-        {bannerImages.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentBg(idx)}
-            aria-label={`Go to slide ${idx + 1}`}
-            className={`transition-all duration-300 rounded-full shadow-sm ${
-              currentBg === idx 
-                ? 'w-2 h-8 bg-accent-500' 
-                : 'w-2 h-2 bg-secondary-300 hover:bg-secondary-400'
-            }`}
+      {/* Background Images */}
+      <div className="absolute inset-0 z-0">
+        {slides.map((slide, index) => (
+          <Image
+            key={index}
+            ref={(el) => {
+              if (el) imagesRef.current[index] = el;
+            }}
+            src={slide.src}
+            alt={slide.title}
+            fill
+            className="object-cover opacity-0 pointer-events-none"
+            priority={index === 0}
           />
         ))}
+        {/* Gray overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-transparent"></div>
       </div>
 
-      {/* Scroll indicator (without text) */}
-      <div className="relative z-20 flex flex-col items-center mt-auto pb-4">
-        <div className="flex flex-col items-center opacity-50 hover:opacity-100 transition-opacity">
-          <div className="w-px h-8 sm:h-12 bg-gradient-to-b from-secondary-400 to-transparent" />
+      <div className="container-custom z-10 w-full mt-20 relative">
+        <div className="max-w-4xl">
+          <h1 className="hero-text text-5xl md:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
+            Corporate Finance.<br />
+            Business Transformation.<br />
+            <span className="text-[#d4af37]">Value Creation.</span>
+          </h1>
+
+          <p className="hero-text text-lg md:text-2xl text-gray-300 mb-10 max-w-2xl border-l-4 border-[#d4af37] pl-6 leading-relaxed font-medium">
+            Strategic Financial Advisory for Businesses, Investors, Banks, and Corporate Leaders
+          </p>
+
+          <div className="hero-text">
+            <button className="bg-[#d4af37] text-[#0a192f] px-10 py-4 rounded-full font-bold transition-all hover:bg-white flex items-center gap-2 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+              Book a Consultation
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
+
+        {/* Navigation Arrows */}
+        <div className="hero-nav absolute right-4 lg:right-16 bottom-0 translate-y-1/2 flex gap-4 z-20">
+          <button
+            onClick={prevSlide}
+            className="w-14 h-14 rounded-full bg-white/10 hover:bg-white border border-white/20 hover:border-white text-white hover:text-gray-900 flex items-center justify-center transition-all backdrop-blur-sm"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="w-14 h-14 rounded-full bg-white/10 hover:bg-white border border-white/20 hover:border-white text-white hover:text-gray-900 flex items-center justify-center transition-all backdrop-blur-sm"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
+
       </div>
+
     </section>
   );
 };
-
-export { Hero };
-export default Hero;

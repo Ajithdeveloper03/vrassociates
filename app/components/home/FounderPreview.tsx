@@ -1,41 +1,76 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
-import { founder } from '@/app/lib/siteData';
+import { useRef } from 'react';
+import Image from 'next/image';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Award, CheckCircle2, ShieldCheck } from 'lucide-react';
 
-export function FounderPreview() {
-  const ref = useRef<HTMLDivElement>(null);
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 100);
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
+const qualifications = [
+  'ICMAI (India)', 
+  'ACS (India)', 
+  'CIMA (United Kingdom)', 
+  'ACCA (United Kingdom)', 
+  'ICSA / Chartered Governance Institute (UK)'
+];
+
+const certifications = [
+  'IBBI Registered Valuer',
+  'IBBI Registered Insolvency Professional',
+  'Independent Director'
+];
+
+export const FounderPreview = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.fromTo('.founder-col-left',
+      { opacity: 0, x: -60, scale: 0.95 },
+      { opacity: 1, x: 0, scale: 1, duration: 1.2, ease: 'power4.out', scrollTrigger: { trigger: containerRef.current, start: 'top 75%' } }
     );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+    gsap.fromTo('.founder-col-mid',
+      { opacity: 0, y: 80, scale: 0.9 },
+      { opacity: 1, y: 0, scale: 1, duration: 1.5, delay: 0.2, ease: 'elastic.out(1, 0.8)', scrollTrigger: { trigger: containerRef.current, start: 'top 75%' } }
+    );
+    gsap.fromTo('.founder-col-right',
+      { opacity: 0, x: 60, scale: 0.95 },
+      { opacity: 1, x: 0, scale: 1, duration: 1.2, delay: 0.3, ease: 'power4.out', scrollTrigger: { trigger: containerRef.current, start: 'top 75%' } }
+    );
+
+    // Parallax shapes
+    gsap.to('.parallax-shape-5', { yPercent: -150, rotation: 180, ease: 'none', scrollTrigger: { trigger: containerRef.current, start: 'top bottom', end: 'bottom top', scrub: 1 } });
+    gsap.to('.parallax-shape-6', { yPercent: 100, xPercent: 50, ease: 'none', scrollTrigger: { trigger: containerRef.current, start: 'top bottom', end: 'bottom top', scrub: 1 } });
+  }, { scope: containerRef });
 
   return (
-    <section className="relative bg-white overflow-hidden section-padding">
-      <div ref={ref} className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          {/* Left Side: Content */}
-          <div className="lg:col-span-7 lg:pr-8">
-            <div className="section-label reveal">Leadership</div>
-            <h2 className="section-title mt-4 mb-6 reveal">
-              Meet Our <span className="gradient-text">Founder</span>
-            </h2>
-            <div className="text-secondary-600 text-lg leading-relaxed mb-8 reveal space-y-4">
+    <section className="py-24 min-h-screen bg-gradient-to-b from-white to-slate-50 flex items-center overflow-hidden relative" ref={containerRef}>
+      
+      {/* Very subtle light background pattern */}
+      <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+      
+      {/* Floating Shapes */}
+      <div className="parallax-shape-5 absolute top-20 right-20 w-32 h-32 border border-[#d4af37]/20 rounded-full z-0 pointer-events-none"></div>
+      <div className="parallax-shape-6 absolute bottom-32 left-10 w-24 h-24 bg-slate-100 rotate-45 rounded-2xl z-0 pointer-events-none"></div>
+
+      {/* Subtle glow for the center image */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#d4af37]/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="container-custom relative z-10 w-full h-full flex items-center">
+        
+        {/* Changed items-center to items-stretch to make columns equal height */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch w-full">
+          
+          {/* Left Column: Details */}
+          <div className="founder-col-left lg:col-span-4 text-[#0a192f] flex flex-col justify-center">
+            <h3 className="text-3xl lg:text-4xl font-extrabold mb-2 text-[#0a192f] leading-tight">Mr. Viswanathan Rajagopalan</h3>
+            <p className="text-[#d4af37] font-bold tracking-widest uppercase text-sm mb-8">Founder & Principal Consultant</p>
+            
+            <div className="space-y-6 text-slate-600 text-[15px] leading-relaxed font-medium text-justify">
               <p>
                 Mr. Viswanathan Rajagopalan is a highly accomplished finance professional with over 25 years of international experience in corporate finance, cost management, business valuation, restructuring, governance, and strategic advisory.
               </p>
@@ -46,50 +81,70 @@ export function FounderPreview() {
                 His multidisciplinary qualifications and practical industry expertise enable him to provide holistic business solutions that combine finance, technology, governance, and operational excellence.
               </p>
             </div>
-
           </div>
 
-          {/* Right Side: Image Card */}
-          <div className="lg:col-span-5 reveal-scale h-full">
-            <div className="relative h-full min-h-[350px] lg:min-h-[450px]">
-              {/* Offset Border Background */}
-              <div className="absolute -top-4 -left-4 w-full h-full border-2 border-primary-300 rounded-[2rem]" />
+          {/* Middle Column: Transparent Image (Equal height) */}
+          <div className="founder-col-mid lg:col-span-4 relative w-full h-[500px] lg:h-auto overflow-hidden">
+            <Image 
+              src="/viswanathanr/founder.png"
+              alt="Viswanathan R"
+              fill
+              className="object-cover object-bottom drop-shadow-2xl z-10 [mask-image:linear-gradient(to_bottom,white_85%,transparent_100%)]"
+            />
+          </div>
 
-              {/* Main Card */}
-              <div className="relative h-full rounded-[2rem] overflow-hidden bg-white flex flex-col items-center shadow-soft-xl border border-secondary-100">
-                
-                {/* Full Container Image */}
-                <img 
-                  src="/viswanathanr/founder.jpg" 
-                  alt={founder.name} 
-                  className="absolute inset-0 w-full h-full object-cover object-top z-0"
-                />
+          {/* Right Column: Qualifications, Certifications & Awards */}
+          <div className="founder-col-right lg:col-span-4 flex flex-col gap-3 justify-center">
+            
+            {/* Qualifications */}
+            <div className="bg-slate-50 border border-slate-100 rounded-[2rem] p-8 shadow-xl">
+              <h4 className="text-xl font-extrabold text-[#0a192f] mb-6 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#d4af37]"></span>
+                Professional Qualifications
+              </h4>
+              <ul className="space-y-3">
+                {qualifications.map((qual, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-slate-700">
+                    <CheckCircle2 className="w-5 h-5 text-[#d4af37] flex-shrink-0 mt-0.5" />
+                    <span className="font-semibold text-sm">{qual}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-                {/* Bottom Gradient for Text Readability */}
-                <div className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 25%, transparent 45%)' }} />
+            {/* Certifications */}
+            <div className="bg-[#0a192f] border border-[#0a192f] rounded-[2rem] p-8 shadow-xl">
+              <h4 className="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#d4af37]"></span>
+                Certifications
+              </h4>
+              <ul className="space-y-3">
+                {certifications.map((cert, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-slate-200">
+                    <ShieldCheck className="w-5 h-5 text-[#d4af37] flex-shrink-0 mt-0.5" />
+                    <span className="font-semibold text-sm">{cert}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-                {/* Animated Scrolling Text (Overlay) */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center opacity-30 select-none mix-blend-overlay z-0">
-                  <div className="whitespace-nowrap animate-marquee flex text-white/50">
-                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
-                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
-                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
-                    <span className="text-[4rem] sm:text-[6rem] lg:text-[8rem] font-bold uppercase mx-8">VR Associates</span>
-                  </div>
+            {/* Academic Achievement */}
+            <div className="bg-gradient-to-br from-[#d4af37] to-[#b38f2a] rounded-[2rem] p-8 shadow-xl relative overflow-hidden group">
+              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="flex items-start gap-4 relative z-10">
+                <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                  <Award className="w-6 h-6 text-[#0a192f]" />
                 </div>
-
-                {/* Bottom Name & Title */}
-                <div className="relative z-10 w-full text-center pb-10 px-6 mt-auto">
-                  <h3 className="text-3xl font-bold text-white tracking-wide mb-1.5 drop-shadow-sm">{founder.name}</h3>
-                  <p className="text-primary-300 text-sm font-bold tracking-wider drop-shadow-sm">{founder.title}</p>
+                <div>
+                  <p className="text-[#0a192f] text-xs font-bold uppercase tracking-widest mb-1">Academic Achievement</p>
+                  <h4 className="text-white text-xl font-extrabold leading-tight">First Rank in Tamil Nadu</h4>
+                  <p className="text-white/90 text-sm mt-2 font-semibold">Accountancy Senior Grade Examination</p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
-export default FounderPreview;
+          </div>
+
+        </div>
+
+     

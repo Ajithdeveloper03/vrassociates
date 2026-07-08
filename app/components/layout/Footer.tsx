@@ -13,12 +13,12 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-3 mb-6">
-              <div className="w-32 h-32 flex items-center justify-center shrink-0">
+              <div className="bg-white px-6 py-4 rounded-2xl shadow-lg w-48 h-auto flex items-center justify-center shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src="/viswanathanr/vr-logo.png" 
                   alt="VR Logo" 
-                  className="w-full h-full object-contain"
+                  className="w-full h-auto object-contain"
                 />
               </div>
             </Link>

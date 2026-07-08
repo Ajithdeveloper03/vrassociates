@@ -1,25 +1,23 @@
 'use client';
 
 import { Hero } from './Hero';
-import { TrustIndicators } from './TrustIndicators';
-import { Industries } from './Industries';
 import { AboutPreview } from './AboutPreview';
 import { FounderPreview } from './FounderPreview';
-import { FounderQualifications } from './FounderQualifications';
+import { StatsSection } from './StatsSection';
 import { OurServicesSection } from './OurServicesSection';
+import { Industries } from './Industries';
 import { CTABanner } from './CTABanner';
 
 const HomePage = () => {
   return (
-    <main>
+    <main className="bg-slate-50 min-h-screen overflow-x-hidden font-sans">
       <Hero />
-      <TrustIndicators />
-      <Industries />
       <AboutPreview />
+      <StatsSection />
       <FounderPreview />
-      <FounderQualifications />
       
       <OurServicesSection />
+      <Industries />
       <CTABanner />
     </main>
   );

@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
-import { Outfit } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-sans' });
-const outfitSerif = Outfit({ subsets: ['latin'], variable: '--font-serif' });
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: 'Viswanathan R Associates - Corporate Finance Advisory',
@@ -25,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${outfitSerif.variable}`}>
-      <body className="min-h-screen flex flex-col font-sans">
+    <html lang="en" className={`${plusJakartaSans.variable}`}>
+      <body className="min-h-screen flex flex-col font-sans bg-slate-50">
         <Header />
         <main className="flex-1">
           {children}
