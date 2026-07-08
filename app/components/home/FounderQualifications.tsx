@@ -39,7 +39,7 @@ export function FounderQualifications() {
   }, []);
 
   return (
-    <section className="relative bg-white pt-6 pb-16 md:pb-24 overflow-hidden">
+    <section className="relative bg-white pt-6 pb-8 md:pb-12 overflow-hidden">
       <div ref={ref} className="container-custom relative z-10">
         
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-0 mb-12 items-stretch">
@@ -89,48 +89,60 @@ export function FounderQualifications() {
           </div>
         </div>
 
-        {/* Highlighted Academic Achievement Card (Two-Column Layout) */}
-        <div className="reveal-up relative overflow-hidden rounded-[20px] bg-gradient-to-r from-[#060E2E] to-[#1B2A5B] border border-[#B28F52] text-white shadow-xl shadow-[#060E2E]/30 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 group mt-4 flex flex-col md:flex-row">
+        {/* Highlighted Academic Achievement Card (Three-Column Symmetrical Layout) */}
+        <div className="reveal-up relative overflow-hidden rounded-xl bg-[#1a2646] border-2 border-[#b5924a] text-white shadow-xl hover:shadow-2xl transition-all duration-300 group mt-4 flex flex-col md:flex-row">
           
-          {/* Left Side: Image (50% width) */}
-          <div className="relative w-full md:w-1/2 min-h-[250px] shrink-0 border-r border-[#B28F52]/30">
+          {/* Left Side: Image */}
+          <div className="relative w-full md:w-[30%] min-h-[140px] md:min-h-[160px] shrink-0 overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1000" 
-              alt="Academic Excellence" 
-              className="absolute inset-0 w-full h-full object-cover object-center" 
+              alt="Academic Excellence Left" 
+              className="absolute inset-0 w-full h-full object-cover object-center scale-105" 
             />
-            {/* Extremely subtle overlay to maintain image clarity while fitting the premium theme */}
-            <div className="absolute inset-0 bg-[#060E2E]/20 mix-blend-overlay"></div>
+            {/* Mingle effect overlay */}
+            <div className="absolute inset-0 bg-[#1a2646]/40 mix-blend-overlay"></div>
+            <div className="absolute inset-0 bg-[#1a2646]/20 mix-blend-multiply"></div>
+            {/* Overlay fading to the right (into the dark blue center) */}
+            <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-transparent via-[#1a2646]/40 to-[#1a2646]"></div>
           </div>
 
-          {/* Right Side: Content (50% width) */}
-          <div className="relative w-full md:w-1/2 p-6 md:p-10 flex items-center justify-between overflow-hidden">
-            {/* Faint Background Graduation Cap Watermark */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.05] pointer-events-none transform translate-x-6 group-hover:scale-110 group-hover:opacity-10 transition-all duration-500">
-              <GraduationCap className="w-40 h-40 md:w-64 md:h-64" strokeWidth={1} />
+          {/* Center: Content */}
+          <div className="relative flex-1 p-4 md:p-6 lg:p-8 flex items-center justify-center overflow-hidden z-10">
+            {/* Background Graduation Cap Watermark */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.10] pointer-events-none transform transition-all duration-700 ease-in-out group-hover:scale-105">
+              <GraduationCap className="w-40 h-40 md:w-[250px] md:h-[250px] text-white" strokeWidth={1} />
             </div>
             
-            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 w-full">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-6 h-[2px] bg-[#B28F52]" />
-                  <span className="text-[#B28F52] font-bold tracking-[0.15em] uppercase text-xs md:text-sm">
-                    Academic Achievement
-                  </span>
-                </div>
-                <h3 className="text-xl md:text-3xl font-bold leading-tight mb-2">
-                  First Rank in Tamil Nadu
-                </h3>
-                <span className="text-gray-300 text-sm md:text-lg font-normal">
-                  Accountancy Senior Grade Examination
+            <div className="relative z-10 flex flex-col justify-center items-center text-center w-full">
+              <div className="flex items-center gap-2 mb-1 md:mb-2">
+                <div className="w-6 h-[1.5px] bg-[#b5924a]" />
+                <span className="text-[#b5924a] font-bold tracking-[0.1em] uppercase text-[9px] md:text-[11px]">
+                  Academic Achievement
                 </span>
+                <div className="w-6 h-[1.5px] bg-[#b5924a]" />
               </div>
-              
-              {/* Gold Badge */}
-              <div className="relative z-10 shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-full bg-[#B28F52] flex items-center justify-center shadow-lg ml-4 mr-2">
-                <Award className="w-8 h-8 md:w-12 md:h-12 text-white" strokeWidth={2} />
-              </div>
+              <h3 className="text-xl md:text-3xl font-extrabold leading-tight tracking-tight mb-1 md:mb-2 text-white">
+                First Rank in Tamil Nadu
+              </h3>
+              <p className="text-gray-200 text-xs md:text-base font-medium tracking-wide">
+                Accountancy Senior Grade Examination
+              </p>
             </div>
+          </div>
+
+          {/* Right Side: Image */}
+          <div className="relative w-full md:w-[30%] min-h-[140px] md:min-h-[160px] shrink-0 flex items-center justify-center overflow-hidden">
+            {/* Gold Medal image on the right */}
+            <img 
+              src="/viswanathanr/Achievement.jpg/" 
+              alt="Gold Medal Academic Excellence" 
+              className="absolute inset-0 w-full h-full object-cover object-center scale-105" 
+            />
+            {/* Mingle effect overlay */}
+            <div className="absolute inset-0 bg-[#1a2646]/50 mix-blend-overlay"></div>
+            <div className="absolute inset-0 bg-[#1a2646]/20 mix-blend-multiply"></div>
+            {/* Overlay fading to the left (into the dark blue center) */}
+            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-transparent via-[#1a2646]/40 to-[#1a2646]"></div>
           </div>
           
         </div>

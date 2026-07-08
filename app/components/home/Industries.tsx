@@ -55,24 +55,27 @@ const IndustryCard = ({ name, icon: Icon, description, theme, index, width }: In
       {String(index + 1).padStart(2, '0')}
     </div>
 
-    <div className="absolute inset-0 flex flex-col justify-end p-10">
+    <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
       <div
         className="w-12 h-1 mb-6 rounded-full transition-all duration-500 group-hover:w-20"
         style={{ backgroundColor: theme.accent }}
       />
 
-      <div className="w-14 h-14 rounded-2xl mb-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2"
-        style={{ backgroundColor: `${theme.accent}22`, border: `1px solid ${theme.accent}44` }}>
-        <Icon className="w-7 h-7" style={{ color: theme.accent }} />
+      <div className="flex items-start gap-4 transition-transform duration-300 group-hover:-translate-y-1">
+        <div className="w-12 h-12 rounded-xl shrink-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-1 mt-0.5"
+          style={{ backgroundColor: `${theme.accent}22`, border: `1px solid ${theme.accent}44` }}>
+          <Icon className="w-6 h-6" style={{ color: theme.accent }} />
+        </div>
+        
+        <div className="flex flex-col">
+          <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
+            {name}
+          </h3>
+          <p className="text-white/70 text-sm leading-relaxed max-w-xs translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
+            {description}
+          </p>
+        </div>
       </div>
-
-      <h3 className="text-2xl font-bold text-white mb-3 leading-tight transition-transform duration-300 group-hover:-translate-y-1">
-        {name}
-      </h3>
-
-      <p className="text-white/70 text-sm leading-relaxed max-w-xs translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
-        {description}
-      </p>
     </div>
   </div>
 );

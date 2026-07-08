@@ -60,9 +60,9 @@ export function FounderPreview() {
                 
                 {/* Full Container Image */}
                 <img 
-                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800" 
+                  src="/viswanathanr/founder.jpg" 
                   alt={founder.name} 
-                  className="absolute inset-0 w-full h-full object-cover z-0"
+                  className="absolute inset-0 w-full h-full object-cover object-top z-0"
                 />
 
                 {/* Bottom Gradient for Text Readability */}
