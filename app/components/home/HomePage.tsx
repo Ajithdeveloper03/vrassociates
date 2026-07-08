@@ -6,7 +6,7 @@ import { Industries } from './Industries';
 import { AboutPreview } from './AboutPreview';
 import { FounderPreview } from './FounderPreview';
 import { FounderQualifications } from './FounderQualifications';
-
+import { OurServicesSection } from './OurServicesSection';
 import { CTABanner } from './CTABanner';
 
 const HomePage = () => {
@@ -18,7 +18,8 @@ const HomePage = () => {
       <AboutPreview />
       <FounderPreview />
       <FounderQualifications />
-
+      
+      <OurServicesSection />
       <CTABanner />
     </main>
   );
