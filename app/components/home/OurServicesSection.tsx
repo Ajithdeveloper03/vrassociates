@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 import gsap from 'gsap';
@@ -75,6 +75,13 @@ export const OurServicesSection = () => {
   const nextSlide = () => setActive((prev) => (prev + 1) % services.length);
   const prevSlide = () => setActive((prev) => (prev - 1 + services.length) % services.length);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % services.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   useGSAP(() => {
     gsap.fromTo('.services-title',
       { opacity: 0, y: 40 },
@@ -96,7 +103,7 @@ export const OurServicesSection = () => {
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop"
+          src="/viswanathanr/service-bg.jpg"
           alt="Corporate Building"
           fill
           className="object-cover"

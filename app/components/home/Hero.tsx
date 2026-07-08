@@ -8,15 +8,15 @@ import { useGSAP } from '@gsap/react';
 
 const slides = [
   {
-    src: "https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=2000&auto=format&fit=crop",
+    src: "/viswanathanr/hero1.jpg",
     title: "Corporate Finance."
   },
   {
-    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop",
+    src: "/viswanathanr/hero2.jpg",
     title: "Business Transformation."
   },
   {
-    src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2000&auto=format&fit=crop",
+    src: "/viswanathanr/hero3.jpg",
     title: "Value Creation."
   }
 ];

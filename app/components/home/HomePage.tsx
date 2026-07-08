@@ -6,6 +6,7 @@ import { FounderPreview } from './FounderPreview';
 import { StatsSection } from './StatsSection';
 import { OurServicesSection } from './OurServicesSection';
 import { Industries } from './Industries';
+import { CoreValuesSection } from './CoreValuesSection';
 import { CTABanner } from './CTABanner';
 
 const HomePage = () => {
@@ -18,6 +19,7 @@ const HomePage = () => {
       
       <OurServicesSection />
       <Industries />
+      <CoreValuesSection />
       <CTABanner />
     </main>
   );

@@ -36,7 +36,7 @@ export const Industries = () => {
   }, { scope: containerRef });
 
   return (
-    <section className="py-24 bg-white overflow-hidden relative" ref={containerRef}>
+    <section className="py-24 bg-slate-100 overflow-hidden relative" ref={containerRef}>
       
       {/* Floating Shapes */}
       <div className="parallax-shape-9 absolute top-20 left-10 w-20 h-20 bg-[#0a192f]/5 rounded-xl rotate-12 z-0 pointer-events-none"></div>
@@ -76,7 +76,7 @@ export const Industries = () => {
             {/* Left tall image */}
             <div className="ind-image relative h-full rounded-[2rem] overflow-hidden group">
               <Image
-                src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800&auto=format&fit=crop"
+                src="/viswanathanr/industry1.jpg"
                 alt="Manufacturing"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -88,7 +88,7 @@ export const Industries = () => {
             <div className="flex flex-col gap-4 md:gap-6 h-full">
               <div className="ind-image relative h-1/2 rounded-[2rem] overflow-hidden group">
                 <Image
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop"
+                  src="/viswanathanr/industry2.jpg"
                   alt="Technology"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -97,7 +97,7 @@ export const Industries = () => {
               </div>
               <div className="ind-image relative h-1/2 rounded-[2rem] overflow-hidden group">
                 <Image
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+                  src="/viswanathanr/industry3.jpg"
                   alt="Healthcare"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"

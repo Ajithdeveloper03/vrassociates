@@ -147,4 +147,7 @@ export const FounderPreview = () => {
 
         </div>
 
-     
+      </div>
+    </section>
+  );
+};
